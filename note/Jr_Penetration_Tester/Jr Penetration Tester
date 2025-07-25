@@ -1,0 +1,180 @@
+Jr Penetration Tester
+--> sudo openvpn 2024_5_CTF/try_hack_me/gcvbnm123.ovpn
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Linux :		
+	--> Metasploit 
+		--> Metasploit: Introduction
+			=> msfconsole | set | show options
+		--> Metasploit: Exploitation
+			=> Port Scanning 
+			=> Msfvenom
+		--> Metasploit: Meterpreter
+			=> meterpreter (for windows)
+		
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~			
+	--> Shell
+		--> netcat : 
+			=> Reverse shells
+			=> Bind shells
+		--> web shell (include window)
+			=> ?cmd= 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+	---> Linux Privilege Escalation
+		=> Enumeration command (find |netstat)
+		=> CVE 
+		=> sudo -l | gcc 
+		=> SUID : unshadow | john 
+		=> getcap  : GTFOBins
+		=> cron 作業 : change sh 
+		=> echo "/bin/bash" > thm
+		=> showmount -e | backdoor2
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Linux Privilege Escalation2
+		--> Common Linux Privesc
+		--> Linux PrivEsc
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Web: 
+	--> Introduction to Web Hacking : 
+		--> Walking An Application 
+		--> Content Discovery 
+		--> Subdomain Enumeration 
+		--> Authentication Bypass  
+			=> Brute Force : FUZZ (ffuf)
+		--> Insecure Direct Object Reference(IDOR) 
+		--> File Inclusion 
+			=> system file type
+		--> Server-Side Request Forgery (SSRF)
+		--> Intro to Cross-site Scripting (XSS)
+			=> Add JavaScript  <script>
+		--> Command Injection == RCE  
+		--> SQL Injection
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> Web Hacking : 
+		--> How Websites Work
+		--> HTTP in Detail
+			=> 狀態碼 | 標頭
+		--> OWASP Top 10
+			=> sqlite3 
+			=> XXE
+			=> XSS 
+		--> OWASP Top 10 - 2021
+			=> sqlite3 
+			=> /console
+			=> Integrity(Hash)
+			=> SSRF
+		--> OWASP Juice Shop
+			=>
+		--> Advanced Client-Side Attacks
+			=> XSS
+			=> CSRF 
+			=> DOM
+		--> Pickle Rick 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Tools
+		--> ToolsRus
+			=> summary
+			
+		--> hydra
+			
+		--> Web Enumeration: (directory)
+			=> Gobuster
+			=> WPScan
+			=> Nikto
+			=> Wappalyzer	
+		--> John The Ripper (password)
+			--> john --wordlist=/usr/share/wordlists/rockyou.txt [path to file]
+			=> hash
+			=> unshadow
+			=> rule
+			=> ssh
+			
+		--> Upload Vulnerabilities (web shell )
+			=> unload file 
+			=> gobuster
+			=> Filter
+			
+		--> Vulnerability (CVE)
+			--> Vulnerability 101
+			--> Exploit Vulnerability
+				=> Nessus 
+			--> Vulnerability Capstone
+				=> Exploit-DB
+			
+		--> Burp Suite
+			--> basic
+			--> Repeater
+			--> Intruder => Payloads
+			--> Sequencer
+			--> Decoder
+			--> Compare
+			--> Extensions
+			=> SQLi on burp | on GET /about/0 UNION  
+		
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> Network Security
+		--> Passive Reconnaissance
+			=> nslookup / dig 
+		--> Active Reconnaissance
+			=>  connect server : telnet // Netcat	
+		--> Nmap 
+			--> Live Host Discovery
+				=> -sL  0.0.0.0/16
+			--> Basic Port Scans
+				=> -sS -p- 
+			--> Advanced Port Scans
+				=> 防火牆 / IDS : --sN 
+			--> Post Port Scans
+				=> -sV -O -sC
+				=> -sV
+		--> Protocols and Servers
+			=> telnet | GET /index.html HTTP/1.1 host: telnet
+			=> Sniffing Attack (tcpdump) 
+			=> Password Attack (hydra)
+			
+		--> Net Sec Challenge
+			=> nmap 
+				
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Windows  : 	
+	--> Windows Exploitation 
+		--> Windows Fundamentals (1/2/3)	
+		--> Active Directory Basics 
+		
+	--> Metasploit 
+		--> Metasploit: Meterpreter
+			=> meterpreter (for windows)
+	--> shell
+		--> web shell 	
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> Window  Privilege Escalation
+		=> RDP ( xfreerdp )
+		=> password file 
+		=> schtasks 
+		=> reg query  
+		=> msfvenom 
+		=> 檢查  : sc qc server 
+		=> 權限  : 
+			--> icacls file
+			--> whoami /priv
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> powershell : 
+		--> wordlist
+		--> python
+			=>Subdomain | Directory | Network | Port |
+			=> wget | hash | Keyloggers | ssh
+		--> powershell command 
+			=> Get-ChildItem
+			=> Get-Content
+			=> Get-FileHash
+			=> Import-Module .\powerview.ps1
+			=> Select-String 
+		--> script 
+			=> port_scan
+		
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+		
+		
+		
+		
+		
+		

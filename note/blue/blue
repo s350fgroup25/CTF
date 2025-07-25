@@ -1,0 +1,35 @@
+安全營運中心( SOC ) : Security Operations Center (SOC)
+	--> 負責監控網路及其係統以偵測惡意網路安全事件
+		--> Vulnerabilities 漏洞
+		--> Policy violations 策略違規
+		--> Unauthorized activity 未經授權的活動
+		--> Network intrusions 網路入侵
+	--> 威脅情報  Threat Intelligence
+
+
+數位取證和事件回應 ( DFIR ): Digital Forensics and Incident Response (DFIR)
+	Digital Forensics 
+		--> File System:
+		--> System memory
+		--> System logs
+		--> Network logs
+	Incident Response
+		--> 配置錯誤、入侵嘗試或違反策略
+		--> 準備 => 偵測與分析 => 遏制、根除和復原 => 事件後活動 
+		--> Preparation 
+			=>Detection and Analysis 
+				=> Containment, Eradication, and Recovery 
+					=>Post-Incident Activity
+	Malware Analysis
+		--> Virus | Trojan Horse | Ransomware -- malicious program
+		
+ security analyst : 
+ 	--> log : 143.110.250.149 -- port 22
+ 	open-source database :
+	 	--> AbuseIPDB
+	 	--> Cisco Talos Intelligence
+	 --> Firewall Block List : Block strange ip
+	 
+ STRIDE (Spoofing identity, Tampering with data, Repudiation threats, Information disclosure, Denial of Service and Elevation of privileges) 
+ PASTA (Process for Attack Simulation and Threat Analysis) 
+事件由電腦安全事件回應團隊( CSIRT )
