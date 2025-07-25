@@ -1,0 +1,66 @@
+Account : Scarlett_qwe : Yct123321 -- All(200-377)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+web Exploitation : (50-59)
+	-->HTTP request methods : https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+	-->Wordlists : https://github.com/v0re/dirb/blob/master/wordlists/big.txt
+	-->Md5collision : https://www.mscs.dal.ca/~selinger/md5collision/
+	-->book: https://datatracker.ietf.org/doc/html/rfc2616
+	--> proxy packet : 
+		--> Language :  Accept-Language: sv,en;q=0.9
+		--> chnage Date :Date: Wed, 21 Oct 2018 07:28:00 GMT
+		--> ip address :X-Forwarded-For: 31.3.152.55
+
+	--> JS code : F12 --> console --> paste  and enter 
+	--> deobfuscate : http://jsnice.org/
+	--> inspector : code 
+	--> mirror the website : 網站鏡像是指對網站內容的拷貝，這類網站通常具有與原站不同的URL，但代管了相同或者是幾乎相同的內容。
+	--> Content Management System (CMS) // wget //curl //httrack 
+		--> httrack http://saturn.picoctf.net:65041/
+		--> grep -nr "picoCTF"
+	--> regular expression : 
+	--> XML external entity Injection : 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cryptography : (50-62)
+	-->
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+General Skills :(50-52)
+	-->
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Forensics:(20-65)
+	--> Strings
+		-->  looks for printable strings in a file
+	--> file : 
+		--> for recognizing the type of data contained in a computer file.
+	--> hexdump : 
+		--> filter and display the specified files, or standard input in a human readable specified forma
+		--> hexdump -C cat.jpg | head -- -C can get word
+	--> binwal  :
+		--> for searching binary images for embedded files and executable code
+		--> unzip : if have another inside file 
+		--> binwalk -Me : All hidded file 提取 * all 隱藏的東西 
+	--> metadata --> image viewer --> image properties --> details
+	--> exiftool :
+		--> Extract information from a file
+		-->  bitmap image(BMP) file  : https://en.wikipedia.org/wiki/BMP_file_format
+	--> hexedit : 
+		--> F2 save | F3 load file 
+		--> ctrl+c exit without saving
+		--> ctrl+x save and exit
+		--> rename --> file(.xxx)
+	--> wireshark 
+		--> 
+		
+	
+	
+	
+	
+	
+	
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+reverse Rngineering(10-83)
+	-->
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Binary Exploition(10-56)
+	-->
