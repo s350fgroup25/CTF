@@ -1,5 +1,5 @@
 Privilege Escalation
---> sudo openvpn 2024_5_CTF/try_hack_me/gcvbnm123.ovpn
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Linux Privilege Escalation : 
 	--> 權限較低的帳戶到權限較高的帳戶
