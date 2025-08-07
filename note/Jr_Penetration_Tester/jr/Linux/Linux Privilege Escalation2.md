@@ -1,4 +1,4 @@
-Common Linux Privesc
+## Common Linux Privesc
 	--> ssh user3@10.10.41.95 | password
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> common : 
@@ -84,8 +84,7 @@ Common Linux Privesc
 		--> export PATH =/tmp:$PATH
 		
 		=> ./script
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Linux PrivEsc
+## Linux PrivEsc
 	--> ssh user@10.10.118.228 |  password321
 	--> https://tryhackme.com/r/room/linuxprivesc
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
