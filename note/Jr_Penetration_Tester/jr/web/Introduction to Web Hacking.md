@@ -3,8 +3,7 @@
 	--> F12 -- Google Chrome Source =Firefox Debugger -- Pretty Print {} 
 		-->  breakpoints : 強制瀏覽器停止處理 JavaScript 並暫停目前執行的點 --> bule
 ## Content Discovery :
-
-	--> Manually :
+###  Manually :
 		--> robots.txt
 		--> favicon : 
 			--> https://static-labs.tryhackme.cloud/sites/favicon/
@@ -13,7 +12,7 @@
 		--> sitemap.xml -- 網站地圖
 		--> HTTP Headers : curl http://10.10.52.124 -v
 		--> Framework Stack
-	--> OSINT :
+###  OSINT :
 		--> Google Hacking / Dorking
 			--> filter : site:
 			--> https://en.wikipedia.org/wiki/Google_hacking
@@ -25,12 +24,11 @@
 		--> GitHub : version control system
 		--> S3 Buckets :  Amazon AWS 提供的儲存服務 
 			--> http(s):// {name}。s3.amazonaws.com  
-	--> Automated Discovery :
+### Automated Discovery :
 		--> wordlists : 2024_5_CTF/wordlist/big.txt
 		--> gobuster dir --url http://10.10.52.124/ -w 2024_5_CTF/wordlist/big.txt | /common.txt
 ## Subdomain Enumeration :
-
-	--> OSINT 
+### OSINT 
 		--> SSL/TLS Certificate
 			--> https://crt.sh
 			--> https://ui.ctsearch.entrust.com/ui/ctsearchui
@@ -38,9 +36,9 @@
 			-->  -site:www.tryhackme.com  site:*.tryhackme.com
 		--> Sublist3r : 
 			--> ./sublist3r.py -d acmeitsupport.thm
-	--> DNS Bruteforce :
+### DNS Bruteforce :
 		--> dnsrecon -t brt -d acmeitsupport.thm
-	--> Virtual Hosts :
+###  Virtual Hosts :
 		--> wordlist : https://github.com/danielmiessler/SecLists/tree/master/Fuzzing
 		--> ffuf -w namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://10.10.81.88 -fs {size}
 		--> -w 使用的單字清單。 -H 新增/編輯標頭
@@ -81,7 +79,7 @@
 			--> /var/log/apache2/access.log  -- Apache  Web 伺服器的存取請求
 			--> C:\boot.ini -- BIOS
 		
-	Local File Inclusion (LFI) :
+### Local File Inclusion (LFI) :
 		--> 函數 :  include、require、include_once和require_once
 			--> include 函數允許我們將任何呼叫的檔案包含到目前頁面中
 			<?PHP 
@@ -96,7 +94,7 @@
 			--> replaces the ../ with the empty string
 				--> ....//....//....//....//....//etc/passwd
 			
-	Remote File Inclusion (RFI):
+### Remote File Inclusion (RFI):
 		--> allow_url_fopen : on 
 		--> allow_url_fopen on 和 allow_url_include
 		--> remote command execution (RCE)
@@ -146,18 +144,18 @@
 			--> Business Logic : 更改使用者電子郵件地址的 JavaScript 函數
 				<script>user.changeEmail('attacker@hacker.thm');</script>
 		--> modification
-	--> Reflected XSS
+###  Reflected XSS
 		-->error --> inject JS script 
 			 --> error=<script src="https://../xx.js"></script>
 		--> using link 
-	--> Stored XSS
+### Stored XSS
 		--> 允許使用者發表評論的部落格網站 
 		--> save to database 
-	--> DOM Based XSS
+###  DOM Based XSS
 		-->  直接在瀏覽器中執行
 		--> 「window.location.x」 --> window.location.hash
 		--> 不安全的 JavaScript 方法 : eval()
-	--> Blind XSS	
+###  Blind XSS	
 		--> XSS Hunter Express : https://github.com/mandatoryprogrammer/xsshunter-express
 		--> Netcat : nc -nlvp 9001
 			--> -l 監聽 | -p 連接埠號碼 | -n 避免透過DNS解析主機名 | -v 詳細模式
@@ -190,7 +188,7 @@
 	--> Verbose command injection : 
 		--> 獲得直接回饋 --> whoami
 	
-	Payload : 
+### Payload : 
 		--> Linux : whoami | ls | ping | sleep | nc
 			--> 
 		--> Windows : whoami | dir | ping | timout 
@@ -203,14 +201,14 @@
 
 ## SQL Injection: 
 	--> Relationa : MySQL, Microsoft SQL Server, Access, PostgreSQL and SQLite
-	--> SQL : 
+###  sql : 
 		--> select * from users LIMIT 1;
 		--> UNION :組合兩個或多個 SELECT 語句的結果
 			--> SELECT name,address,city,postcode from customers UNION SELECT company,address,city,postcode from suppliers;
 		--> insert into users (username,password) values ('bob','password123');
 		--> update users SET username='root',password='pass123' where username='admin';
 		--> delete from users where username='martin';
-	--> injection : 
+###  sqli : 
 		--> 註解 ;--
 		--> In-Band SQL Injection
 		--> Error-Based SQL Injection
@@ -219,7 +217,7 @@
 	--> 字元 : 單撇號 (') 或引號 (")
 		--> 收到此錯誤訊息這一事實證實了SQL注入漏洞的存在
 		
-	--> In-Band SQL Injection : 
+###  In-Band SQL Injection : 
 		--> method :  database() 
 			--> group_concat() 從多個傳回的行中取得指定的列 
 			--> group_concat(table_name)  | information_schema.tables  |table_schema
@@ -234,7 +232,7 @@
 		--> 0 UNION SELECT 1,2,group_concat(column_name) FROM information_schema.columns WHERE table_name = 'staff_users'
 		--> 0 UNION SELECT 1,2,group_concat(username,':',password SEPARATOR '<br>') FROM staff_users
 
-	--> Blind SQLi
+### Blind SQLi
 		--> Authentication Bypass -- login 
 			--> ' OR 1=1;-- 
 		--> Boolean Based: (true/false)
