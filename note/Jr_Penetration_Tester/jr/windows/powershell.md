@@ -1,5 +1,4 @@
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Scripting for Pentesters
+## Scripting for Pentesters
 	--> https://tryhackme.com/module/scripting-for-pentesters
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	python :
@@ -97,12 +96,10 @@ Scripting for Pentesters
 				=> Please enter username to bruteforce: tiffany
 				=> Please enter location of the password file: wordlist2.txt
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-RDP: 
+## RDP: 
 	--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.37.243 /u:Administrator /p:'BHN2UVw0Q'
 	--> xfreerdp /v:10.10.37.243 /u:Administrator /p:BHN2UVw0Q /dynamic-resolution
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-PowerShell
+## PowerShell
 	--> 使用 .NET 框架建構的 Windows 腳本語言和 shell 環境
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> PowerShell command : 
@@ -177,7 +174,7 @@ PowerShell
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 		Does the path Exist ?
 			=>if(Set-Location C:\Users\Administrator\Documents\Passwords)
-{Write-Host "It exists!"}Else{Write-Host "The path doesn't exist bro."}
+				{Write-Host "It exists!"}Else{Write-Host "The path doesn't exist bro."}
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		make a request to a web server
 			=> Invoke-WebRequest
@@ -247,10 +244,11 @@ PowerShell
 				=> 查看本地連接埠是否正在偵聽 : waiting-ports.ps1
 				=> 查看檔案包含密碼 : password.ps1
 				=> 查看檔案包含 HTTPS連結 :htmls_link.ps1
-				=> 查看開放連接埠:port_scan.ps1	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-PowerShell for Pentesters : 
-	--> PowerSploit 或 Nishang (防毒軟體 can check)
-	--> ssh walter@10.10.210.144 | Kowacs123! => powershell
+				=> 查看開放連接埠:port_scan.ps1	
+    	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	PowerShell for Pentesters : 
+		--> PowerSploit 或 Nishang (防毒軟體 can check)
+		--> ssh walter@10.10.210.144 | Kowacs123! => powershell
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> 操作文件 
 		--> Start-Process : 可用於啟動進程
