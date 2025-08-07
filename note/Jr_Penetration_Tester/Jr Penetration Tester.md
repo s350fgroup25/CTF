@@ -1,6 +1,6 @@
 # Jr Penetration Tester
 ## Linux :		
-	--> Metasploit 
+### Metasploit 
 		--> Metasploit: Introduction
 			=> msfconsole | set | show options
 		--> Metasploit: Exploitation
@@ -9,15 +9,13 @@
 		--> Metasploit: Meterpreter
 			=> meterpreter (for windows)
 		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~			
-	--> Shell
+### Shell
 		--> netcat : 
 			=> Reverse shells
 			=> Bind shells
 		--> web shell (include window)
 			=> ?cmd= 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	---> Linux Privilege Escalation
+### Linux Privilege Escalation
 		=> Enumeration command (find |netstat)
 		=> CVE 
 		=> sudo -l | gcc 
@@ -26,12 +24,11 @@
 		=> cron 作業 : change sh 
 		=> echo "/bin/bash" > thm
 		=> showmount -e | backdoor2
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Linux Privilege Escalation2
+### Linux Privilege Escalation2
 		--> Common Linux Privesc
 		--> Linux PrivEsc
 ## Web: 
-	--> Introduction to Web Hacking : 
+### Introduction to Web Hacking : 
 		--> Walking An Application 
 		--> Content Discovery 
 		--> Subdomain Enumeration 
@@ -45,8 +42,7 @@
 			=> Add JavaScript  <script>
 		--> Command Injection == RCE  
 		--> SQL Injection
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Web Hacking : 
+### Web Hacking : 
 		--> How Websites Work
 		--> HTTP in Detail
 			=> 狀態碼 | 標頭
@@ -66,8 +62,7 @@
 			=> CSRF 
 			=> DOM
 		--> Pickle Rick 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Tools
+### Tools
 		--> ToolsRus
 			=> summary
 			
@@ -107,8 +102,7 @@
 			--> Extensions
 			=> SQLi on burp | on GET /about/0 UNION  
 		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> Network Security
+### Network Security
 		--> Passive Reconnaissance
 			=> nslookup / dig 
 		--> Active Reconnaissance
@@ -141,8 +135,7 @@
 			=> meterpreter (for windows)
 	--> shell
 		--> web shell 	
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Window  Privilege Escalation
+### Window  Privilege Escalation
 		=> RDP ( xfreerdp )
 		=> password file 
 		=> schtasks 
@@ -152,8 +145,7 @@
 		=> 權限  : 
 			--> icacls file
 			--> whoami /priv
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> powershell : 
+### powershell : 
 		--> wordlist
 		--> python
 			=>Subdomain | Directory | Network | Port |
