@@ -1,6 +1,5 @@
-Jr Penetration Tester
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Linux :		
+# Jr Penetration Tester
+## Linux :		
 	--> Metasploit 
 		--> Metasploit: Introduction
 			=> msfconsole | set | show options
@@ -31,8 +30,7 @@ Linux :
 	--> Linux Privilege Escalation2
 		--> Common Linux Privesc
 		--> Linux PrivEsc
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Web: 
+## Web: 
 	--> Introduction to Web Hacking : 
 		--> Walking An Application 
 		--> Content Discovery 
@@ -133,8 +131,7 @@ Web:
 		--> Net Sec Challenge
 			=> nmap 
 				
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-Windows  : 	
+## Windows  : 	
 	--> Windows Exploitation 
 		--> Windows Fundamentals (1/2/3)	
 		--> Active Directory Basics 
@@ -169,9 +166,7 @@ Windows  :
 			=> Select-String 
 		--> script 
 			=> port_scan
-		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-		
+
 		
 		
 		
