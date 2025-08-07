@@ -2,7 +2,6 @@
 ## Linux Privilege Escalation : 
 	--> 權限較低的帳戶到權限較高的帳戶
 	--> ssh karen@10.10.163.255 Password1
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### Enumeration : 
 		--> whoami 
 			--> karen
@@ -566,28 +565,4 @@
 		--> openssl passwd newpasswordhere
 	--> GTFOBins ( https://gtfobins.github.io ) 
 		--> sudo -l 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
