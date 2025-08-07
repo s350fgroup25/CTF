@@ -1,7 +1,4 @@
-Network Security
---> sudo openvpn 2024_5_CTF/try_hack_me/gcvbnm123.ovpn
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Passive Reconnaissance
+## Passive Reconnaissance
 	--> WHOIS 記錄 : whois 
 		--> TCP port 43
 		--> whois tryhackme.com(DOMAIN_NAME)
@@ -34,8 +31,7 @@ Passive Reconnaissance
 		--> Shodan.io 	: 物聯網搜尋引擎 : check 客戶端網路的各種信息
 			--> https://www.shodan.io/
 			--> https://tryhackme.com/r/room/shodan
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Active Reconnaissance
+## Active Reconnaissance
 	--> need to connect server : HTTP、FTP、SMTP
 	--> social engineering
 	
@@ -64,8 +60,7 @@ Active Reconnaissance
 		--> option : -l 聆聽模式 | -n 無法透過DNS解析主機名 | -v 詳細輸出
 			--> -vv 非常詳細 | -k 客戶端斷開連線後繼續監聽
 			--> 小於 1024 的連接埠號碼需要 root 權限才能偵聽。
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Nmap 
+## Nmap 
 	--> Live Host Discovery
 		--> /16(255.255.0.0)  | /24 (255.255.255.0)
 		--> -sL : 提供 Nmap 將掃描的主機的詳細列表 -- list ip
@@ -187,8 +182,7 @@ Nmap
 			--> get file :
 				--> sudo scp pentester@10.10.184.32:/home/pentester/* .
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- Protocols and Servers 
+## Protocols and Servers 
 	 --> 遠端登入 (telnet) :  port 23
 		--> telnet 10.10.67.180 / need username password 
 			<-- Wireshark cut 流量 <-- find username password 
@@ -255,8 +249,7 @@ Nmap
 			--> -s PORT 非預設連接埠 | -V或者-vV 詳細信息 | -t n 平行連接數。| -d 調試
 			--> hydra -l lazie -P /usr/share/wordlists/rockyou.txt 10.10.126.186 imap
 		--> hydra -l eddie -P /usr/share/wordlists/rockyou.txt ftp://10.10.123.96:10021 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Network Security Challenge
+## Network Security Challenge
 	--> sudo nmap -sS -T5 10.10.123.96 
 	--> highest port under 10000 : -p1-10000 
 	--> common above 10,000 : -p- 
@@ -286,8 +279,7 @@ Network Security Challenge
 			--> -D 10.10.0.1,10.10.0.2,ME 10.10.157.59
 		--> -sN NULL 
 			
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	womdow -Pn : 目標不回覆 ICMP 封包
+
 	
 	
 	
