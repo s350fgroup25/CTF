@@ -1,11 +1,11 @@
 # Reverse engineering(pwn) : 
-	## basic
+## basic
 		--> Analyzing the source code
 		--> ltrace : will run file in binary until it exits
 		--> value not address : 0x41414141--> AAAA | 0x42424242 --> BBBB|  0x90c90c90c --> \x90
 		--> GOT (Global offset table) 
 		--> PLT (procedure Linkage Table) 
-	## Format string bug : 
+##  Format string bug : 
 		--> %x : reads and print the value from the current buffer pointer
 		--> %n : --> reads the value stored in the current buffer pointer 
 			 --> write to that memory location the number of characters already printed
@@ -16,7 +16,7 @@
 		--> %p: To specify pointers
 		--> %x: To print the hex value
 		
-	## buffer overflow
+##  buffer overflow
 		--> Low Memory Addresses (0x0000) --> HIgh Memory Addressees(0xFFFF)
 		--> to change higer memory
 			--> as function --24byte | long(8 byte) -- char(20 byte) 
@@ -43,13 +43,13 @@
 			--> r $(python3 -c 'import sys; sys.stdout.buffer.write(b"\x90"*99 + b"\x6a\x0b\x58\x99\x52\x66\x68\x2d\x70\x89\xe1\x52\x6a\x68\x68\x2f\x62\x61\x73\x68\x2f\x62\x69\x6e\x89\xe3\x52\x51\x53\x89\xe1\xcd\x80" +b"\x70\xd7\xff\xff")')
 			
 			
-	## Environment variable (Env-Variable)  :
+##  Environment variable (Env-Variable)  :
 		--> expecting the environment variable (global) EGG to contain data
 			--> export EGG=cd
 			--> echo $EGG
 			---> export EGG=`perl -e 'print "\x31...\x80"'`
 		
-	## Shellcode: 
+## Shellcode: 
 		--> resource : 
 			--> http://shell-storm.org/shellcode/index.html
 				--> uname -a  --> for OS so any x86 or x86_64 
@@ -64,7 +64,7 @@
 				--> ./shellcode_byte_counter.sh SHELLCODE_FILE
 
 				
-	--> Segmentation fault :
+## Segmentation fault :
 		--> gbd  :  debug the binary 
 			--> gdb ./narnia1
 
@@ -85,7 +85,7 @@
 			
 			--> esp vs eap vs eip
 			
-		--> objdump
+## objdump
 			--> USEAGE : 
 				--> listing headers for an executable
 				--> disassembling an executable  
