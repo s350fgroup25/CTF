@@ -24,9 +24,8 @@
 		=> cron 作業 : change sh 
 		=> echo "/bin/bash" > thm
 		=> showmount -e | backdoor2
-### Linux Privilege Escalation2
-		--> Common Linux Privesc
-		--> Linux PrivEsc
+		=> Common Linux Privesc
+		=> Linux PrivEsc
 ## Web: 
 ### Introduction to Web Hacking : 
 		--> Walking An Application 
