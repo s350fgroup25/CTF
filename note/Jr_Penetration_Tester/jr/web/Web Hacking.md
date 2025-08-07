@@ -405,8 +405,7 @@
 			--> 引用標頭繞過
 				--> Referer 標頭
 
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-	--> TASK :
+###  TASK :
 		=> via email : 
 		=> 1.: Hidden Link/Image Exploitation: 
 			<a href="http://mybank.thm:8080/dashboard.php?to_account=GB82MYBANK5698&amount=1000" target="_blank">Click Here to Redeem</a>
