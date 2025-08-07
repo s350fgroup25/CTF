@@ -1,13 +1,13 @@
-## Wordllist : 
-	Subdomain:
+## Wordlist : 
+### Subdomain:
 		--> /usr/share/dirb/wordlists/common.txt
 			=> big.txt |
 		--> /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 			=> directory-list-1.0.txt
-	username: 
+### username: 
 		--> /usr/share/commix/src/txt/usernames.txt
 		--> /usr/share/wfuzz/wordlist/others/names.txt
-	password : 
+### password : 
 		--> /usr/share/wordlists/rockyou.txt
 		--> /home/kali/2024_5_CTF/wordlist/wordlist2.txt
 		--> /home/kali/2024_5_CTF/wordlist/10-million-password-list-top-100.txt
@@ -59,8 +59,7 @@
 			--> 在客戶端（我們的瀏覽器）調試和執行 JavaScript 等程式碼
 			
 			--> F12 : Inspecting Tool
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-		--> Gobuster : 
+### Gobuster : 
 			--> normal :
 				--> -t 線程（預設10）=> 更改為 64 以提高掃描速度
 				--> -v 詳細 
@@ -101,8 +100,7 @@
 				--> other : 
 					--> https://github.com/danielmiessler/SecLists
 					--> sudo apt install seclists
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
-		--> WPScan :
+### WPScan :
 			--> 運行WordPress 的系統上發現的各種內容
 			
 			--> start :wpscan --update 
@@ -138,8 +136,7 @@
 				--> 對 Web 伺服器的大量請求可能會觸發防火牆等內容，並最終導致您被伺服器封鎖
 				--> --plugins-detection
 				--> --plugins-detection aggressive
-		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~		
-		--> Nikto :
+### Nikto :
 			--> 流行的漏洞掃描器
 			--> 對所有類型的網路伺服器執行評估
 			
@@ -191,8 +188,7 @@
 				--> -o 轉儲 -- 檔案名稱和相容的副檔名
 				--> f 指定格式 
 				--> nikto -h http://ip_address -o report.html
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	--> Wappalyzer : 
+### Wappalyzer : 
 		--> https://www.wappalyzer.com/
 		--> Click the icon for a list of identified technologies
 		--> Click on a technology or category for more insights
@@ -278,9 +274,7 @@
 			
 		--> python3 /opt/ssh2john.py  id_rsa > id_rsa_hash.txt
 		--> john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Task : 
-		--> 
+
 
 ## Upload Vulnerabilities	: 
 	--> https://tryhackme.com/r/room/uploadvulns
