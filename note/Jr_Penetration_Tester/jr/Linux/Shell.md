@@ -1,7 +1,5 @@
-Shell
---> sudo openvpn 2024_5_CTF/try_hack_me/gcvbnm123.ovpn
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-What is a shell?
+# Shell
+## What is a shell?
 	--> shell 是我們與命令列環境 (CLI) 互動時所使用的工具
 	--> linux  : bash 或 sh 
 	--> window : cmd.exe 和 Powershell
@@ -249,8 +247,7 @@ What is a shell?
 				--> 透過RDP、 telnet 、 winexe 、 psexec 、 WinRM 或任意數量的其他方法登錄
 				--> net user <username> <password> /add
 				--> net localgroup administrators <username> /add
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
- linux Ubuntu 18.04 server  : 
+## linux Ubuntu 18.04 server  : 
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	--> task 1: 
 		--> 將 Webshel​​l 上傳到 Linux 機器
@@ -291,8 +288,7 @@ What is a shell?
 		--> 反向 shell 技術 :
 			--->  https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- Windows 2019 Server  :
+## Windows 2019 Server  :
 	--> Username: Administrator | Password: TryH4ckM3!
 	--> login using RDP : 
 		--> xfreerdp /dynamic-resolution +clipboard /cert:ignore /v:xx.xx.xx.xx /u:Administrator /p:'TryH4ckM3!'
